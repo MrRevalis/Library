@@ -4,8 +4,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\Library.csproj", "{6DAB5266-39EC-49D1-B420-7C90865F486D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DB0B61DD-12DF-4D1E-BC3A-1775A1431EB7} = {DB0B61DD-12DF-4D1E-BC3A-1775A1431EB7}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Tests", "Library.Tests\Library.Tests.csproj", "{1460CF74-0ED9-473F-85A2-C89D8B02422D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6DAB5266-39EC-49D1-B420-7C90865F486D} = {6DAB5266-39EC-49D1-B420-7C90865F486D}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Domain", "Library.Domain\Library.Domain.csproj", "{DB0B61DD-12DF-4D1E-BC3A-1775A1431EB7}"
 EndProject

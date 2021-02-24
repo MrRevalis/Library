@@ -1,0 +1,15 @@
+﻿@using Library.Domain.Entities
+@model IEnumerable<Book>
+
+@{
+    ViewBag.Title = "Book List";
+}
+
+<h2>@ViewBag.Title</h2>
+@foreach(Book x in Model)
+{
+    <div>
+        <h4>@x.Title</h4>
+        <h5>Author: @x.Author</h5>
+    </div>
+}
