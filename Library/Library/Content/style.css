@@ -1,0 +1,50 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(-45deg, #ddd6f3, #faaca8);
+}
+
+header {
+    /*background-color: green;*/
+    height: 10vh;
+}
+
+nav {
+    /*background-color: rebeccapurple;*/
+    height: 80vh;
+    width: 20%;
+    float: left;
+}
+
+article {
+    background-color: whitesmoke;
+    height: 80vh;
+    width: 80%;
+    float: right;
+}
+
+footer {
+    /*background-color: gray;*/
+    height: 10vh;
+    clear: both;
+}
+
+.itemContainer {
+    border: 1px solid black;
+    max-width: 50%;
+    margin: 1em;
+}
+
+.pageLinks {
+    background-color: red;
+    display: inline-block;
+    padding: 2em;
+}
+
+.selectedPage {
+    background-color: black;
+}
