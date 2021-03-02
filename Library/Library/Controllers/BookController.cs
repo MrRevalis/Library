@@ -19,20 +19,24 @@ namespace Library.Controllers
             repository = repositoryParam;
         }
 
-        public ViewResult List(int page = 1)
+        public ViewResult List(string genre, int page = 1)
         {
             BooksListViewModel booksModel = new BooksListViewModel
             {
                 Books = repository.Books
+                .Where(x => genre == null || x.Classification == genre)
                 .OrderBy(x => x.BookID)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize),
                 PagingInfo = new PagingInfo
                 {
-                    TotalItems = repository.Books.Count(),
+                    TotalItems = genre == null ?
+                    repository.Books.Count():
+                    repository.Books.Where(x => x.Classification == genre).Count(),
                     ItemsPerPage = pageSize,
                     CurrentPage = page
-                }
+                },
+                BookGenre = genre
             };
             return View(booksModel);
         }

@@ -7,8 +7,16 @@
     <title>@ViewBag.Title</title>
 </head>
     <body>
-        <header></header>
-        <nav></nav>
+        <header>
+            <h3>Library</h3>
+            <div class="headerContainer">
+                @Html.ActionLink("Login", "Login", "Account")
+                @Html.ActionLink("Register", "Register", "Account")
+            </div>
+        </header>
+        <nav>
+            @Html.Action("Menu", "Nav")
+        </nav>
         <article>
             @RenderBody()
         </article>

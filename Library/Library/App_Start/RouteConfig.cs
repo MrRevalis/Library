@@ -14,10 +14,41 @@ namespace Library
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Book", action = "List", id = UrlParameter.Optional }
-            );
+                null,
+                "",
+                new
+                {
+                    controller = "Book",
+                    action = "List",
+                    genre = (string)null,
+                    page = 1
+                }
+                );
+
+            routes.MapRoute(
+                null,
+                "page{page}",
+                new { controller = "Book", action = "List", genre = (string)null },
+                new { page = @"\d+" }
+                );
+
+            routes.MapRoute(
+                null,
+                "{genre}",
+                new { controller = "Book", action = "List", page = 1 }
+                );
+
+            routes.MapRoute(
+                null,
+                "{genre}/page{page}",
+                new { controller = "Book", action = "List" },
+                new { page = @"\d+" }
+                );
+
+            routes.MapRoute(
+                null,
+                "{controller}/{action}"
+                );
         }
     }
 }

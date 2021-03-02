@@ -2,49 +2,105 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
 }
 
 body {
-    background: linear-gradient(-45deg, #ddd6f3, #faaca8);
+    /*background: linear-gradient(-45deg, #ddd6f3, #faaca8);*/
 }
 
 header {
-    /*background-color: green;*/
-    height: 10vh;
+    background-color: #6b0f1a;
+    background-image: linear-gradient(315deg, #6b0f1a 0%, #b91372 74%);
+    height: 5vh;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+header > h3 {
+    font-size: 1.5rem;
+    margin-left: 1em;
+}
+
+.headerContainer {
+    margin-left: auto;
+}
+
+.headerContainer > a {
+    font-size: 1.1rem;
+    color: white;
+    text-decoration: none;
+    padding: 0.8em;
+}
+
+.headerContainer > a:hover {
+    background-color: #B3808080;
 }
 
 nav {
     /*background-color: rebeccapurple;*/
-    height: 80vh;
-    width: 20%;
+    height: 85vh;
+    width: 10%;
     float: left;
+    padding: 1em;
 }
 
 article {
     background-color: whitesmoke;
-    height: 80vh;
-    width: 80%;
+    position: relative;
+    height: 85vh;
+    width: 90%;
     float: right;
+    padding: 1em;
 }
 
 footer {
-    /*background-color: gray;*/
+    background-color: #99808080;
     height: 10vh;
     clear: both;
+}
+
+.selectPage {
+    position: absolute;
+    bottom: 0;
 }
 
 .itemContainer {
     border: 1px solid black;
     max-width: 50%;
     margin: 1em;
+    padding: 1em;
+    font-size: 1.3rem;
 }
 
 .pageLinks {
-    background-color: red;
     display: inline-block;
-    padding: 2em;
+    padding: 1em;
+    margin: 1em 0em 1em 0.5em;
+    border-radius: 0.5em;
+    color: white;
+    text-decoration: none;
+    background-color: white;
+    color: black;
 }
 
 .selectedPage {
-    background-color: black;
+    background-color: #808080;
+}
+
+.menuItem {
+    display: block;
+    text-decoration: none;
+    padding: 1em;
+    background-color: #fc5296;
+    background-image: linear-gradient(315deg, #fc5296 0%, #f67062 74%);
+    margin-bottom: 1em;
+    text-align: center;
+    color: white;
+    border-radius: 0.5em;
+}
+
+.menuItemSelected{
+    color: black;
 }
