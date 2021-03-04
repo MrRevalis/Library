@@ -6,11 +6,17 @@
     ViewBag.Title = "Book List";
 }
 
-<h2>@ViewBag.Title</h2>
-@foreach(Book x in Model.Books)
-{
-    @Html.Partial("BookSummary", x);
-}
-<div class="selectPage">
-    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x , genre = Model.BookGenre}))
-</div>
+<nav>
+    @Html.Action("Menu", "Nav")
+</nav>
+
+<article>
+    <h2>@ViewBag.Title</h2>
+    @foreach (Book x in Model.Books)
+    {
+        @Html.Partial("BookSummary", x);
+    }
+    <div class="selectPage">
+        @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x, genre = Model.BookGenre }))
+    </div>
+</article>

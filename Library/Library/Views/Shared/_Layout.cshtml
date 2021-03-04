@@ -8,18 +8,13 @@
 </head>
     <body>
         <header>
-            <h3>Library</h3>
+            <h3>@Html.ActionLink("Library", "List", "Book")</h3>
             <div class="headerContainer">
-                @Html.ActionLink("Login", "Login", "Account")
-                @Html.ActionLink("Register", "Register", "Account")
+                @Html.ActionLink("Login", "Login", "Login")
+                @Html.ActionLink("Register", "Register", "Register")
             </div>
         </header>
-        <nav>
-            @Html.Action("Menu", "Nav")
-        </nav>
-        <article>
-            @RenderBody()
-        </article>
+        @RenderBody()
         <footer></footer>
     </body>
 </html>

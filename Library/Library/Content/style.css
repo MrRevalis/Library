@@ -23,6 +23,11 @@ header > h3 {
     margin-left: 1em;
 }
 
+header > h3 > a {
+    color: white;
+    text-decoration: none;
+}
+
 .headerContainer {
     margin-left: auto;
 }
@@ -53,6 +58,17 @@ article {
     width: 90%;
     float: right;
     padding: 1em;
+}
+
+main {
+    display: block;
+    height: 85vh;
+    width: 100%;
+}
+
+form {
+    width: 50%;
+    margin: auto;
 }
 
 footer {
@@ -103,4 +119,61 @@ footer {
 
 .menuItemSelected{
     color: black;
+}
+
+form > h1{
+    font-weight: 300;
+    margin: 0.4em;
+}
+
+.formGroup {
+    font-size: 1.2rem;
+    margin: 1em;
+}
+
+.formGroup > label {
+    font-size: 1.4rem;
+}
+
+.formRows {
+    margin-top: 0.25em;
+}
+
+.formRows > input {
+    display: block;
+    width: 75%;
+    height: 4vh;
+    border: 1px solid #808080;
+    border-radius: 0.3em;
+    margin-bottom: 0.25em;
+    padding-left: 1em;
+}
+
+.formRows > input:focus{
+    border: 1px solid #f67062;
+    outline: none;
+}
+
+.formRows > span {
+    color: #990000;
+}
+
+.submitSection {
+    margin: 1em;
+}
+
+.submitSection > input {
+    padding: 0.5em;
+    background-color: #f67062;
+    border: 1px solid #f67062;
+    border-radius: 0.3em;
+    font-size: 1.4rem;
+    width: 25%;
+    outline: none;
+}
+
+.submitSection > input:hover {
+    color: white;
+    background-color: #FBC5C0;
+    border-color: #FBC5C0;
 }

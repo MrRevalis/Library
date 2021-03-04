@@ -74,9 +74,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IAccountRepository.cs" />
     <Compile Include="Abstract\IBookRepository.cs" />
+    <Compile Include="Concrete\EFAccountRepository.cs" />
     <Compile Include="Concrete\EFBookRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
+    <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\Book.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

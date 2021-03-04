@@ -11,5 +11,6 @@ namespace Library.Domain.Concrete
     public class EFDbContext : DbContext
     {
         public DbSet<Book> Books { get; set; }
+        public DbSet<Account> Accounts { get; set; }
     }
 }

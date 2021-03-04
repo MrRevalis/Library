@@ -43,6 +43,7 @@ namespace Library.Infrastructure
 
             kernel.Bind<IBookRepository>().ToConstant(mock.Object);*/
             kernel.Bind<IBookRepository>().To<EFBookRepository>();
+            kernel.Bind<IAccountRepository>().To<EFAccountRepository>();
         }
     }
 }
