@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/mainScripts")
     <title>@ViewBag.Title</title>
 </head>
     <body>
@@ -16,7 +17,9 @@
         </header>
         @if (TempData["RegisterMessage"] != null)
         {
-            <script>alert("@TempData["RegisterMessage"]");</script>
+            <div class="alertMessage" onclick="CloseAlert(this)">
+                Success! <strong>You have registered successfully</strong>
+            </div>
         }
         @RenderBody()
         <footer></footer>

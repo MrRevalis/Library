@@ -46,7 +46,7 @@ header > h3 > a {
 nav {
     /*background-color: rebeccapurple;*/
     height: 85vh;
-    width: 10%;
+    width: 15%;
     float: left;
     padding: 1em;
 }
@@ -55,13 +55,13 @@ article {
     background-color: whitesmoke;
     position: relative;
     height: 85vh;
-    width: 90%;
+    width: 85%;
     float: right;
     padding: 1em;
 }
 
 main {
-    display: block;
+    display: inline-block;
     height: 85vh;
     width: 100%;
 }
@@ -176,4 +176,19 @@ form > h1{
     color: white;
     background-color: #FBC5C0;
     border-color: #FBC5C0;
+}
+
+.alertMessage {
+    position: absolute;
+    z-index: 10;
+    background-color: green;
+    text-align: center;
+    padding: 1em;
+    width: 25%;
+    color: white;
+    border-radius: 0.3em;
+    left: 50%;
+    top: 6%;
+    transform: translate(-50%, 0);
+    cursor: default;
 }

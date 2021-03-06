@@ -17,6 +17,9 @@ namespace Library
                     .Include("~/Scripts/jquery-{version}.js",
                     "~/Scripts/jquery.validate.js",
                     "~/Scripts/jquery.validate.unobtrusive.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/mainScripts")
+                .Include("~/Scripts/script.js"));
         }
     }
 }
