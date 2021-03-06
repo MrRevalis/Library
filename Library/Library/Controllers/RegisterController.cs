@@ -36,11 +36,45 @@ namespace Library.Controllers
                     Email = account.Email,
                     Password = account.Password.hashSHA256()
                 };
+
                 repository.CreateAccount(newAccount);
+                TempData["RegisterMessage"] = "You have registered successfully";
                 return RedirectToAction("List", "Book");
             }
 
             return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public JsonResult EmailExists(string email)
+        {
+            return repository.EmailExists(email) ? Json(true): Json($"Email {email} is already in use.");
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public JsonResult UserExists(string username)
+        {
+            if (repository.UsernameExists(username))
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                string errorMessage = $"{username} is not available.";
+                for (int i = 0; i < 10; i++)
+                {
+                    string alternativeUsername = username + i.ToString();
+                    if (repository.UsernameExists(alternativeUsername))
+                    {
+                        errorMessage += $" Try '{alternativeUsername}'.";
+                        break;
+                    }
+                }
+                return Json(errorMessage, JsonRequestBehavior.AllowGet);
+            }
+
         }
     }
 }

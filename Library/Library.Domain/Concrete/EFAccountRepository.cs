@@ -21,5 +21,9 @@ namespace Library.Domain.Concrete
             context.Accounts.Add(account);
             context.SaveChanges();
         }
+
+        public bool EmailExists(string email) => !context.Accounts.Any(x => x.Email == email);
+
+        public bool UsernameExists(string username) => !context.Accounts.Any(x => x.Username == username);
     }
 }

@@ -11,5 +11,7 @@ namespace Library.Domain.Abstract
     {
         IEnumerable<Account> Accounts { get; }
         void CreateAccount(Account account);
+        bool EmailExists(string email);
+        bool UsernameExists(string login);
     }
 }

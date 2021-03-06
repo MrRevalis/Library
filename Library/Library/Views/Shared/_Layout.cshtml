@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="~/Content/style.css" />
+    @Styles.Render("~/Content/css")
     <title>@ViewBag.Title</title>
 </head>
     <body>
@@ -14,6 +14,10 @@
                 @Html.ActionLink("Register", "Register", "Register")
             </div>
         </header>
+        @if (TempData["RegisterMessage"] != null)
+        {
+            <script>alert("@TempData["RegisterMessage"]");</script>
+        }
         @RenderBody()
         <footer></footer>
     </body>
