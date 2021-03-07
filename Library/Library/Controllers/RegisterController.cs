@@ -38,7 +38,7 @@ namespace Library.Controllers
                 };
 
                 repository.CreateAccount(newAccount);
-                TempData["RegisterMessage"] = "You have registered successfully";
+                TempData["Message"] = new Message() { Text = "Success! <strong>You have registered successfully.</strong>", ClassName = "alertMessage successful" };
                 return RedirectToAction("List", "Book");
             }
 

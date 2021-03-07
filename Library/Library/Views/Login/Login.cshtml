@@ -23,6 +23,7 @@
                 @Html.ValidationMessageFor(x => x.Password)
             </div>
         </div>
+        @Html.CustomErrorMessage(ViewContext.ViewData.ModelState, "LoginError");
         <div class="submitSection">
             <input type="submit" value="Login" />
         </div>

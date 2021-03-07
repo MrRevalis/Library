@@ -13,5 +13,6 @@ namespace Library.Domain.Abstract
         void CreateAccount(Account account);
         bool EmailExists(string email);
         bool UsernameExists(string login);
+        Account ValidAccount(string login, string password);
     }
 }

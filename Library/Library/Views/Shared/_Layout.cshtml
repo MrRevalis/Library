@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Library.Models
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -11,14 +12,22 @@
         <header>
             <h3>@Html.ActionLink("Library", "List", "Book")</h3>
             <div class="headerContainer">
-                @Html.ActionLink("Login", "Login", "Login")
-                @Html.ActionLink("Register", "Register", "Register")
+                @if (Request.IsAuthenticated)
+                {
+                    @Html.ActionLink("Logout", "Logout", "Login")
+                }
+                else
+                {
+                    @Html.ActionLink("Login", "Login", "Login")
+                    @Html.ActionLink("Register", "Register", "Register")
+                }
             </div>
         </header>
-        @if (TempData["RegisterMessage"] != null)
+        @if (TempData["Message"] != null)
         {
-            <div class="alertMessage" onclick="CloseAlert(this)">
-                Success! <strong>You have registered successfully</strong>
+            var messageModel = (Message)TempData["Message"];
+            <div class="@messageModel.ClassName" onclick="CloseAlert(this)">
+                @Html.Raw(messageModel.Text)
             </div>
         }
         @RenderBody()

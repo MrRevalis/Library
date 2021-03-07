@@ -181,7 +181,6 @@ form > h1{
 .alertMessage {
     position: absolute;
     z-index: 10;
-    background-color: green;
     text-align: center;
     padding: 1em;
     width: 25%;
@@ -191,4 +190,22 @@ form > h1{
     top: 6%;
     transform: translate(-50%, 0);
     cursor: default;
+}
+
+.error {
+    background-color: red;
+}
+
+.successful {
+    background-color: green;
+}
+
+.info {
+    background-color: blue;
+}
+
+.customError {
+    font-size: 1.4rem;
+    color: #990000;
+    padding-left: 1em;
 }

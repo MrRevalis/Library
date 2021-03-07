@@ -25,5 +25,7 @@ namespace Library.Domain.Concrete
         public bool EmailExists(string email) => !context.Accounts.Any(x => x.Email == email);
 
         public bool UsernameExists(string username) => !context.Accounts.Any(x => x.Username == username);
+
+        public Account ValidAccount(string login, string password) => context.Accounts.Where(x => x.Username == login && x.Password == password).FirstOrDefault();
     }
 }
