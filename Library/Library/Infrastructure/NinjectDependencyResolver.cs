@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Library.Domain.Abstract;
 using Library.Domain.Concrete;
 using Library.Domain.Entities;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Owin.Security;
 using Moq;
 using Ninject;
+using Ninject.Web.Common;
 
 namespace Library.Infrastructure
 {
@@ -43,7 +49,9 @@ namespace Library.Infrastructure
 
             kernel.Bind<IBookRepository>().ToConstant(mock.Object);*/
             kernel.Bind<IBookRepository>().To<EFBookRepository>();
-            kernel.Bind<IAccountRepository>().To<EFAccountRepository>();
+            //kernel.Bind<IAccountRepository>().To<EFAccountRepository>();
+            kernel.Bind<AppUserManager>().ToMethod(x => HttpContext.Current.GetOwinContext().GetUserManager<AppUserManager>());
+            kernel.Bind<IAuthenticationManager>().ToMethod(x => HttpContext.Current.GetOwinContext().Authentication).InRequestScope();
         }
     }
 }

@@ -9,7 +9,7 @@
     {
         @Html.AntiForgeryToken()
         <h1>Registration</h1>
-
+        @Html.ValidationSummary(false)
         <div class="formGroup">
             @Html.LabelFor(x => x.Username)
             <div class="formRows">

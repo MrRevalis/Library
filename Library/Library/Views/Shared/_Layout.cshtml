@@ -1,4 +1,5 @@
-﻿@using Library.Models
+﻿@using Library.Models;
+@using System.Security.Principal
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,7 @@
         <header>
             <h3>@Html.ActionLink("Library", "List", "Book")</h3>
             <div class="headerContainer">
-                @if (Request.IsAuthenticated)
+                @if (User.Identity.IsAuthenticated)
                 {
                     @Html.ActionLink("Logout", "Logout", "Login")
                 }

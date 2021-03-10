@@ -7,16 +7,29 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Library.Extensions;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using System.Threading.Tasks;
+using Microsoft.Owin.Security;
 
 namespace Library.Controllers
 {
     public class RegisterController : Controller
     {
-        private IAccountRepository repository;
-
-        public RegisterController(IAccountRepository repositoryParam)
+        /*private AppUserManager UserManager
         {
-            repository = repositoryParam;
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            }
+        }*/
+
+        private AppUserManager UserManager;
+        private IAuthenticationManager AuthManager;
+        public RegisterController(AppUserManager userManager, IAuthenticationManager authManager)
+        {
+            UserManager = userManager;
+            AuthManager = authManager;
         }
 
         public ViewResult Register()
@@ -26,25 +39,34 @@ namespace Library.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(AccountModel account)
+        public async Task<ActionResult> Register(AccountModel account)
         {
             if (ModelState.IsValid)
             {
-                Account newAccount = new Account()
+                AppUser user = new AppUser { UserName = account.Username, Email = account.Email };
+                IdentityResult result = await UserManager.CreateAsync(user, account.Password);
+
+                if (result.Succeeded)
                 {
-                    Username = account.Username,
-                    Email = account.Email,
-                    Password = account.Password.hashSHA256()
-                };
+                    TempData["Message"] = new Message() { Text = "Success! <strong>You have registered successfully.</strong>", ClassName = "alertMessage successful" };
+                    return RedirectToAction("List", "Book");
+                }
+                else
+                {
+                    AddErrorsFromResult(result);
+                }
 
-                repository.CreateAccount(newAccount);
-                TempData["Message"] = new Message() { Text = "Success! <strong>You have registered successfully.</strong>", ClassName = "alertMessage successful" };
-                return RedirectToAction("List", "Book");
             }
-
-            return View();
+            return View(account);
         }
-
+        private void AddErrorsFromResult(IdentityResult result)
+        {
+            foreach (string error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
+        }
+        /*
         [AllowAnonymous]
         [HttpPost]
         public JsonResult EmailExists(string email)
@@ -74,7 +96,6 @@ namespace Library.Controllers
                 }
                 return Json(errorMessage, JsonRequestBehavior.AllowGet);
             }
-
-        }
+        }*/
     }
 }
