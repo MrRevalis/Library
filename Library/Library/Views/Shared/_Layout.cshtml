@@ -15,6 +15,7 @@
             <div class="headerContainer">
                 @if (User.Identity.IsAuthenticated)
                 {
+                    @Html.ActionLink("Admin Panel", "Index", "Admin")
                     @Html.ActionLink("Logout", "Logout", "Login")
                 }
                 else

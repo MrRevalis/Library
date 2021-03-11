@@ -66,36 +66,30 @@ namespace Library.Controllers
                 ModelState.AddModelError("", error);
             }
         }
-        /*
+        
         [AllowAnonymous]
         [HttpPost]
-        public JsonResult EmailExists(string email)
+        public async Task<JsonResult> EmailExists(string email)
         {
-            return repository.EmailExists(email) ? Json(true): Json($"Email {email} is already in use.");
+            AppUser user = await UserManager.FindByEmailAsync(email);
+            return user == null ? Json(true) : Json($"Email {email} is already in use.");
+            //return repository.EmailExists(email) ? Json(true): Json($"Email {email} is already in use.");
         }
-
+        
         [AllowAnonymous]
         [HttpPost]
-        public JsonResult UserExists(string username)
+        public async Task<JsonResult> UserExists(string username)
         {
-            if (repository.UsernameExists(username))
+            AppUser user = await UserManager.FindByNameAsync(username);
+            if (user == null)
             {
                 return Json(true, JsonRequestBehavior.AllowGet);
             }
             else
             {
-                string errorMessage = $"{username} is not available.";
-                for (int i = 0; i < 10; i++)
-                {
-                    string alternativeUsername = username + i.ToString();
-                    if (repository.UsernameExists(alternativeUsername))
-                    {
-                        errorMessage += $" Try '{alternativeUsername}'.";
-                        break;
-                    }
-                }
+                string errorMessage = $"'{username}' is not available.";
                 return Json(errorMessage, JsonRequestBehavior.AllowGet);
             }
-        }*/
+        }
     }
 }

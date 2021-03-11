@@ -158,6 +158,16 @@ form > h1{
     color: #990000;
 }
 
+.formRows > textarea {
+    display: block;
+    width: 75%;
+    max-width: 75%;
+    min-width: 75%;
+    height: 50%;
+    max-height: 20vh;
+    padding: 0.3em;
+}
+
 .submitSection {
     margin: 1em;
 }
@@ -173,6 +183,24 @@ form > h1{
 }
 
 .submitSection > input:hover {
+    color: white;
+    background-color: #FBC5C0;
+    border-color: #FBC5C0;
+}
+
+.returnButton {
+    padding: 0.5em;
+    background-color: #f67062;
+    border: 1px solid #f67062;
+    border-radius: 0.3em;
+    font-size: 1.4rem;
+    width: 25%;
+    outline: none;
+    text-decoration: none;
+    color: black;
+}
+
+.returnButton:hover {
     color: white;
     background-color: #FBC5C0;
     border-color: #FBC5C0;
@@ -208,4 +236,44 @@ form > h1{
     font-size: 1.4rem;
     color: #990000;
     padding-left: 1em;
+}
+
+.validation-summary-errors > ul {
+    list-style-type: none;
+    color: #990000;
+    font-size: 1.4rem;
+    padding-left: 1em;
+}
+
+.customTable {
+    margin: auto;
+    margin-top: 1em;
+    border-collapse: collapse;
+}
+
+.customTable > tbody > tr > th{
+    font-size: 1.4rem;
+}
+
+.customTable > tbody > tr {
+    border-bottom: 1px solid #ccc;
+}
+
+.customTable > tbody> tr > td {
+    padding: 1em;
+    font-size: 1.2rem;
+}
+
+.middleText {
+    font-weight: 300;
+    text-align: center;
+    padding: 1em;
+    font-size: 1.5rem;
+}
+
+.editIcon {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url("../Images/edit.png");
 }

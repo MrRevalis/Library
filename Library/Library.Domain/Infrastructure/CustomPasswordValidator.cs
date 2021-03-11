@@ -15,7 +15,7 @@ namespace Library.Domain.Infrastructure
             if (item.Equals("zaq1@WSX"))
             {
                 var errors = identityResult.Errors.ToList();
-                errors.Add("Password must not consist of known passwords");
+                errors.Add("Password must not consist of known passwords.");
                 identityResult = new IdentityResult(errors);
             }
             return identityResult;

@@ -6,12 +6,14 @@ namespace Library.Models
     {
         [Display(Name = "Login")]
         [Required(ErrorMessage = "Please enter a username.")]
+        [System.Web.Mvc.Remote(action: "UserExists", controller: "Register", HttpMethod = "POST")]
         public string Username { get; set; }
 
         [Display(Name = "Email")]
         [Required(ErrorMessage = "Please enter a valid email address.")]
         [DataType(DataType.EmailAddress)]
         [MaxLength(320)]
+        [System.Web.Mvc.Remote(action: "EmailExists", controller: "Register", HttpMethod = "POST")]
         public string Email { get; set; }
 
         [Display(Name = "Password")]

@@ -1,0 +1,46 @@
+﻿@model Library.Domain.Entities.Book
+@using Library.Models
+
+@{ 
+    ViewBag.Title = Model.Title;
+}
+
+<main>
+    @if (TempData["Message"] != null)
+    {
+        var messageModel = (Message)TempData["Message"];
+        <div class="@messageModel.ClassName" onclick="CloseAlert(this)">
+            @Html.Raw(messageModel.Text)
+        </div>
+    }
+    <h4 class="middleText">Edit for @Model.Title</h4>
+    @using (Html.BeginForm())
+    {
+        <div class="formGroup">
+            @Html.HiddenFor(x => x.BookID)
+            @foreach (var x in ViewData.ModelMetadata.Properties)
+            {
+                <div class="formRows">
+                    @if (x.PropertyName != "BookID")
+                    {
+                        <label>@(x.DisplayName ?? x.PropertyName)</label>
+                        if (x.PropertyName == "Description")
+                        {
+                            @Html.TextArea(x.PropertyName, null,
+                            new { @class = "form-control", rows = 5 })
+                        }
+                        else
+                        {
+                            @Html.TextBox(x.PropertyName, null,
+                            new { @class = "form-control" })
+                        }
+                    }
+                </div>
+            }
+        </div>
+        <div class="submitSection">
+            <input type="submit" value="Save" />
+            @Html.ActionLink("Cancel", "Index", "", new { @class = "returnButton" })
+        </div>
+    }
+</main>

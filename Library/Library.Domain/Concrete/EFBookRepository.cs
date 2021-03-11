@@ -15,5 +15,25 @@ namespace Library.Domain.Concrete
         {
             get { return context.Books; }
         }
+
+        public void SaveBook(Book book)
+        {
+            if(book.BookID == 0)
+            {
+                context.Books.Add(book);
+            }
+            else
+            {
+                Book dbBook = context.Books.Find(book.BookID);
+                if(dbBook != null)
+                {
+                    dbBook.Title = book.Title;
+                    dbBook.Author = book.Author;
+                    dbBook.Description = book.Description;
+                    dbBook.Classification = book.Classification;
+                }
+            }
+            context.SaveChanges();
+        }
     }
 }
