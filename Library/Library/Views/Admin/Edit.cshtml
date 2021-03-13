@@ -1,10 +1,11 @@
 ﻿@model Library.Domain.Entities.Book
 @using Library.Models
 
-@{ 
+@{
     ViewBag.Title = Model.Title;
+    var topText = Model.Title != null ? $"Edit for {Model.Title}" : "Add new book";
 }
-
+@Scripts.Render("~/bundles/jquery")
 @if (TempData["Message"] != null)
 {
     var messageModel = (Message)TempData["Message"];
@@ -12,7 +13,7 @@
         @Html.Raw(messageModel.Text)
     </div>
 }
-<h4 class="middleText">Edit for @Model.Title</h4>
+<h4 class="middleText">@topText</h4>
 @using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="formGroup">
@@ -27,39 +28,46 @@
                     break;
                 default:
                     <div class="formRows">
-                    <label>@(x.DisplayName ?? x.PropertyName)</label>
-                    @if (x.PropertyName == "Description")
-                    {
-                        @Html.TextArea(x.PropertyName, null,
-                        new { @class = "form-control", rows = 5 })
-                    }
-                    else
-                    {
-                        @Html.TextBox(x.PropertyName, null,
-                        new { @class = "form-control" })
-                    }
-                    @Html.ValidationMessage(x.PropertyName)
+                        <label>@(x.DisplayName ?? x.PropertyName)</label>
+                        @if (x.PropertyName == "Description")
+                        {
+                            @Html.TextArea(x.PropertyName, null,
+                            new { @class = "form-control", rows = 5 })
+                        }
+                        else
+                        {
+                            @Html.TextBox(x.PropertyName, null,
+                            new { @class = "form-control" })
+                        }
+                        @Html.ValidationMessage(x.PropertyName)
                     </div>
                     break;
             }
         }
         <div class="formRows">
-            <label>Book cover</label>
-            <a href="javascript::">
-                Choose file...
-                <input type="file" name="Image" size="40" onchange="$("#upload-file-info").html($(this).val());" />
-            </a>
-            <span id="uploadFileInfo"></span>
-        </div>
-            @if(Model.ImageData == null)
+            <div>
+                <label>Book cover</label>
+                <a style="position: relative;" href="javascript:;">
+                    Choose file...
+                    <input type="file"
+                           name="Image"
+                           size="40"
+                           style="position:absolute;z-index:2;left:0; opacity: 0; background-color: transparent; color: transparent;"
+                           onchange='$("#uploadFileInfo").html($(this).val());' />
+                </a>
+                <span id="uploadFileInfo" class="uploadName"></span>
+            </div>
+            @if (Model.ImageData == null)
             {
                 <div>No cover</div>
             }
             else
             {
-                <img width="200" height="200" src="@Url.Action("GetImage", "Book", new {Model.BookID})" />
+                <img width="150" height="250" src="@Url.Action("GetImage", "Book", new {Model.BookID})" />
             }
+        </div>
     </div>
+
     <div class="submitSection">
         <input type="submit" value="Save" />
         @Html.ActionLink("Cancel", "Index", "", new { @class = "returnButton" })

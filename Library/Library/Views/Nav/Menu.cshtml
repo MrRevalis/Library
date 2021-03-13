@@ -1,25 +1,39 @@
 ﻿@model IEnumerable<string>
 
-<span class="navCategoryText">Category</span>
-<ul>
-    @foreach (string x in Model)
+<div class="menuContainer">
+    @if (User.Identity.IsAuthenticated)
     {
-    <li>
-        @Html.RouteLink(
-        x,
-        new
-        {
-            controller = "Book",
-            action = "List",
-            genre = x,
-            page = 1
-        },
-        new
-        {
-            @class = "menuItem" +
-            (ViewBag.genre == x ? " menuItemSelected" : "")
-        }
-        )
-    </li>
+        <nav class="leftMenu">
+            <span class="navCategoryText">Admin Panel</span>
+            <ul>
+                <li>@Html.ActionLink("Book management", "Index", "Admin")</li>
+            </ul>
+        </nav>
     }
-</ul>    
+
+    <nav class="leftMenu">
+        <span class="navCategoryText">Category</span>
+        <ul>
+            @foreach (string x in Model)
+            {
+                <li>
+                    @Html.RouteLink(
+                    x,
+                    new
+                    {
+                        controller = "Book",
+                        action = "List",
+                        genre = x,
+                        page = 1
+                    },
+                    new
+                    {
+                        @class = "menuItem" +
+                        (ViewBag.genre == x ? " menuItemSelected" : "")
+                    }
+                    )
+                </li>
+            }
+        </ul>
+    </nav>
+</div>

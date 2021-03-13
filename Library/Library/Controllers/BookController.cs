@@ -13,7 +13,7 @@ namespace Library.Controllers
     public class BookController : Controller
     {
         private IBookRepository repository;
-        public int pageSize = 8;
+        public int pageSize = 9;
 
         public BookController(IBookRepository repositoryParam)
         {

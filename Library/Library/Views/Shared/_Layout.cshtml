@@ -23,8 +23,7 @@
             <div class="navBottom right">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    @Html.ActionLink("Admin Panel", "Index", "Admin")
-                    @Html.ActionLink("Logout", "Logout", "Login")
+                    @Html.ActionLink($"Logout {User.Identity.Name}", "Logout", "Login")
                 }
                 else
                 {

@@ -80,12 +80,17 @@ main {
 }
 
 /* Left menu */
-.leftMenu {
+.menuContainer {
     width: 25%;
+}
+
+.leftMenu {
+    width: 75%;
     height: max-content;
     background-color: white;
     justify-content: flex-start;
     padding: 1em;
+    margin-bottom: 1em;
 }
 
 .leftMenu ul {
@@ -223,7 +228,7 @@ form > h1 {
 }
 /* Forms submit buttons */
 .submitSection {
-    margin: 1em;
+    margin: 2em;
 }
 
 .submitSection > input {
@@ -333,4 +338,18 @@ form > h1 {
     width: 32px;
     height: 32px;
     background: url("../Images/edit.png");
+}
+
+.deleteIcon {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url("../Images/delete.png");
+}
+
+.uploadName {
+    margin-left: 1em;
+    padding: 0.5em;
+    display: inline-block;
+    color: #f67062;
 }

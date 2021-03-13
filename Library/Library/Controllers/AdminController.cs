@@ -4,7 +4,10 @@ using Library.Models;
 using Library.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 
@@ -51,6 +54,16 @@ namespace Library.Controllers
                     book.ImageData = new byte[image.ContentLength];
                     image.InputStream.Read(book.ImageData, 0, image.ContentLength);
                 }
+                else 
+                {
+                    FileInfo defaultImage = new FileInfo(Server.MapPath("~/Images/defaultCover.png"));
+                    book.ImageMimeType = "image/png";
+                    book.ImageData = new byte[defaultImage.Length];
+                    using (FileStream fs = defaultImage.OpenRead())
+                    {
+                        fs.Read(book.ImageData, 0, book.ImageData.Length);
+                    }
+                }
                 repository.SaveBook(book);
                 TempData["Message"] = new Message() { Text = "Success! <strong>You have successfully change book data.</strong>", ClassName = "alertMessage successful" };
                 return RedirectToAction("Index");
@@ -64,6 +77,20 @@ namespace Library.Controllers
         public ActionResult Create()
         {
             return View("Edit", new Book());
+        }
+
+        public ActionResult Delete(int bookID)
+        {
+            bool deleted = repository.DeleteBook(bookID);
+            if (deleted)
+            {
+                TempData["Message"] = new Message() { Text = "Success! <strong>You have successfully delete item.</strong>", ClassName = "alertMessage successful" };
+            }
+            else
+            {
+                TempData["Message"] = new Message() { Text = "Error! <strong>Cannot delete item!</strong>", ClassName = "alertMessage error" };
+            }
+            return RedirectToAction("Index");
         }
     }
 }

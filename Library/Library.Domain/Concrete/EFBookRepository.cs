@@ -16,6 +16,21 @@ namespace Library.Domain.Concrete
             get { return context.Books; }
         }
 
+        public bool DeleteBook(int bookID)
+        {
+            Book book = context.Books.Find(bookID);
+            if(book != null)
+            {
+                context.Books.Remove(book);
+                context.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public void SaveBook(Book book)
         {
             if(book.BookID == 0)
