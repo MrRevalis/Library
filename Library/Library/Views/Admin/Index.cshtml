@@ -1,29 +1,30 @@
 ﻿@using Library.ViewModels
 @model IEnumerable<BooksViewModel>
 
-<main>
-    <table class="customTable">
-        <tbody>
+<table class="customTable">
+    <tbody>
+        <tr>
+            <th>@Html.DisplayNameFor(x => x.Title)</th>
+            <th>@Html.DisplayNameFor(x => x.Author)</th>
+            <th>@Html.DisplayNameFor(x => x.Description)</th>
+            <th>@Html.DisplayNameFor(x => x.Classification)</th>
+            <th></th>
+        </tr>
+        @foreach (var book in Model)
+        {
             <tr>
-                <th>@Html.DisplayNameFor(x => x.Title)</th>
-                <th>@Html.DisplayNameFor(x => x.Author)</th>
-                <th>@Html.DisplayNameFor(x => x.Description)</th>
-                <th>@Html.DisplayNameFor(x => x.Classification)</th>
-                <th></th>
+                <td>@Html.DisplayFor(x => book.Title)</td>
+                <td>@Html.DisplayFor(x => book.Author)</td>
+                <td>@Html.DisplayFor(x => book.Description)</td>
+                <td>@Html.DisplayFor(x => book.Classification)</td>
+                <td>
+                    @Html.ActionLink(" ", "Edit", new { bookID = book.ID }, new { @class = "editIcon" })
+                    @Html.ActionLink("Delete", "Delete", new { bookID = book.ID })
+                </td>
             </tr>
-            @foreach(var book in Model)
-            {
-                <tr>
-                    <td>@Html.DisplayFor(x => book.Title)</td>
-                    <td>@Html.DisplayFor(x => book.Author)</td>
-                    <td>@Html.DisplayFor(x => book.Description)</td>
-                    <td>@Html.DisplayFor(x => book.Classification)</td>
-                    <td>
-                        @Html.ActionLink(" ", "Edit", new { bookID = book.ID}, new { @class = "editIcon" })
-                        @Html.ActionLink("Delete", "Delete", new { bookID = book.ID})
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</main>
+        }
+    </tbody>
+</table>
+<div class="submitSection">
+    @Html.ActionLink("Create new", "Create", "", new { @class = "returnButton" })
+</div>

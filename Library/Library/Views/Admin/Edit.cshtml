@@ -5,42 +5,63 @@
     ViewBag.Title = Model.Title;
 }
 
-<main>
-    @if (TempData["Message"] != null)
-    {
-        var messageModel = (Message)TempData["Message"];
-        <div class="@messageModel.ClassName" onclick="CloseAlert(this)">
-            @Html.Raw(messageModel.Text)
-        </div>
-    }
-    <h4 class="middleText">Edit for @Model.Title</h4>
-    @using (Html.BeginForm())
-    {
-        <div class="formGroup">
-            @Html.HiddenFor(x => x.BookID)
-            @foreach (var x in ViewData.ModelMetadata.Properties)
+@if (TempData["Message"] != null)
+{
+    var messageModel = (Message)TempData["Message"];
+    <div class="@messageModel.ClassName" onclick="CloseAlert(this)">
+        @Html.Raw(messageModel.Text)
+    </div>
+}
+<h4 class="middleText">Edit for @Model.Title</h4>
+@using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="formGroup">
+        @Html.HiddenFor(x => x.BookID)
+        @foreach (var x in ViewData.ModelMetadata.Properties)
+        {
+            switch (x.PropertyName)
             {
-                <div class="formRows">
-                    @if (x.PropertyName != "BookID")
+                case "BookID":
+                case "ImageData":
+                case "ImageMimeType":
+                    break;
+                default:
+                    <div class="formRows">
+                    <label>@(x.DisplayName ?? x.PropertyName)</label>
+                    @if (x.PropertyName == "Description")
                     {
-                        <label>@(x.DisplayName ?? x.PropertyName)</label>
-                        if (x.PropertyName == "Description")
-                        {
-                            @Html.TextArea(x.PropertyName, null,
-                            new { @class = "form-control", rows = 5 })
-                        }
-                        else
-                        {
-                            @Html.TextBox(x.PropertyName, null,
-                            new { @class = "form-control" })
-                        }
+                        @Html.TextArea(x.PropertyName, null,
+                        new { @class = "form-control", rows = 5 })
                     }
-                </div>
+                    else
+                    {
+                        @Html.TextBox(x.PropertyName, null,
+                        new { @class = "form-control" })
+                    }
+                    @Html.ValidationMessage(x.PropertyName)
+                    </div>
+                    break;
             }
+        }
+        <div class="formRows">
+            <label>Book cover</label>
+            <a href="javascript::">
+                Choose file...
+                <input type="file" name="Image" size="40" onchange="$("#upload-file-info").html($(this).val());" />
+            </a>
+            <span id="uploadFileInfo"></span>
         </div>
-        <div class="submitSection">
-            <input type="submit" value="Save" />
-            @Html.ActionLink("Cancel", "Index", "", new { @class = "returnButton" })
-        </div>
-    }
-</main>
+            @if(Model.ImageData == null)
+            {
+                <div>No cover</div>
+            }
+            else
+            {
+                <img width="200" height="200" src="@Url.Action("GetImage", "Book", new {Model.BookID})" />
+            }
+    </div>
+    <div class="submitSection">
+        <input type="submit" value="Save" />
+        @Html.ActionLink("Cancel", "Index", "", new { @class = "returnButton" })
+    </div>
+}

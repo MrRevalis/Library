@@ -6,13 +6,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Library.Models;
+using Library.Domain.Entities;
 
 namespace Library.Controllers
 {
     public class BookController : Controller
     {
         private IBookRepository repository;
-        public int pageSize = 4;
+        public int pageSize = 8;
 
         public BookController(IBookRepository repositoryParam)
         {
@@ -39,6 +40,19 @@ namespace Library.Controllers
                 BookGenre = genre
             };
             return View(booksModel);
+        }
+
+        public FileContentResult GetImage(int bookID)
+        {
+            Book book = repository.Books.FirstOrDefault(x => x.BookID == bookID);
+            if(book != null)
+            {
+                return File(book.ImageData, book.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

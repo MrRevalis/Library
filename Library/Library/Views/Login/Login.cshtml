@@ -4,29 +4,27 @@
     ViewBag.Title = "Login page";
 }
 
-<main>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        <h1>Login</h1>
-        @Html.ValidationSummary(true)
-        <div class="formGroup">
-            @Html.LabelFor(x => x.Login)
-            <div class="formRows">
-                @Html.EditorFor(x => x.Login)
-                @Html.ValidationMessageFor(x => x.Login)
-            </div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <h1>Login</h1>
+    @Html.ValidationSummary(true)
+    <div class="formGroup">
+        @Html.LabelFor(x => x.Login)
+        <div class="formRows">
+            @Html.EditorFor(x => x.Login)
+            @Html.ValidationMessageFor(x => x.Login)
         </div>
-        <div class="formGroup">
-            @Html.LabelFor(x => x.Password)
-            <div class="formRows">
-                @Html.EditorFor(x => x.Password)
-                @Html.ValidationMessageFor(x => x.Password)
-            </div>
+    </div>
+    <div class="formGroup">
+        @Html.LabelFor(x => x.Password)
+        <div class="formRows">
+            @Html.EditorFor(x => x.Password)
+            @Html.ValidationMessageFor(x => x.Password)
         </div>
-        @Html.CustomErrorMessage(ViewContext.ViewData.ModelState, "LoginError");
-        <div class="submitSection">
-            <input type="submit" value="Login" />
-        </div>
-    }
-</main>
+    </div>
+    @Html.CustomErrorMessage(ViewContext.ViewData.ModelState, "LoginError");
+    <div class="submitSection">
+        <input type="submit" value="Login" />
+    </div>
+}

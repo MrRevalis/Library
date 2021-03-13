@@ -1,7 +1,11 @@
 ﻿@model Library.Domain.Entities.Book
 
-<div class="itemContainer">
-    <h4>Title: @Model.Title</h4>
-    <h5>Author: @Model.Author</h5>
-    <h6>Genre: @Model.Classification</h6>
+@{ 
+    var className = (string)ViewData["className"];
+}
+
+<div class="itemContainer @className">
+    <img width="150" height="250" src="@Url.Action("GetImage", "Book", new { Model.BookID})" />
+    <h5>@Model.Title</h5>
+    <h6>@Model.Author</h6>
 </div>

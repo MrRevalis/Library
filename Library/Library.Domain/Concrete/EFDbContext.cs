@@ -11,7 +11,10 @@ namespace Library.Domain.Concrete
 {
     public class EFDbContext : IdentityDbContext<AppUser>
     {
-        public EFDbContext() : base("EFDbContext") { }
+        public EFDbContext() : base("EFDbContext") 
+        {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<EFDbContext, Library.Domain.Migrations.Configuration>());
+        }
 
         static EFDbContext()
         {
@@ -27,17 +30,8 @@ namespace Library.Domain.Concrete
         public DbSet<Account> Accounts { get; set; }
     }
 
-    public class IdentityDbInit: DropCreateDatabaseIfModelChanges<EFDbContext>
+    public class IdentityDbInit: NullDatabaseInitializer<EFDbContext>
     {
-        protected override void Seed(EFDbContext context)
-        {
-            PerformInitialSetup(context);
-            base.Seed(context);
-        }
 
-        public void PerformInitialSetup(EFDbContext context)
-        {
-
-        }
     }
 }

@@ -27,7 +27,7 @@ namespace Library.Controllers
                     ID = x.BookID,
                     Title = x.Title,
                     Author = x.Author,
-                    Description = x.Description.Substring(0, 50) + "...",
+                    Description = x.Description.Length < 50 ? x.Description + "..." : x.Description.Substring(0, 50) + "...",
                     Classification = x.Classification
                 });
 
@@ -41,10 +41,16 @@ namespace Library.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Book book)
+        public ActionResult Edit(Book book, HttpPostedFileBase image = null)
         {
             if (ModelState.IsValid)
             {
+                if(image != null)
+                {
+                    book.ImageMimeType = image.ContentType;
+                    book.ImageData = new byte[image.ContentLength];
+                    image.InputStream.Read(book.ImageData, 0, image.ContentLength);
+                }
                 repository.SaveBook(book);
                 TempData["Message"] = new Message() { Text = "Success! <strong>You have successfully change book data.</strong>", ClassName = "alertMessage successful" };
                 return RedirectToAction("Index");
@@ -53,6 +59,11 @@ namespace Library.Controllers
             {
                 return View(book);
             }
+        }
+
+        public ActionResult Create()
+        {
+            return View("Edit", new Book());
         }
     }
 }

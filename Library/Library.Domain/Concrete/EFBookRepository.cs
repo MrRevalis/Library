@@ -31,6 +31,8 @@ namespace Library.Domain.Concrete
                     dbBook.Author = book.Author;
                     dbBook.Description = book.Description;
                     dbBook.Classification = book.Classification;
+                    dbBook.ImageData = book.ImageData;
+                    dbBook.ImageMimeType = book.ImageMimeType;
                 }
             }
             context.SaveChanges();

@@ -111,8 +111,16 @@
     <Compile Include="Entities\AppUserManager.cs" />
     <Compile Include="Entities\Book.cs" />
     <Compile Include="Infrastructure\CustomPasswordValidator.cs" />
-    <Compile Include="Migrations\202103092328266_AddingIdentity.cs" />
+    <Compile Include="Migrations\202103121222107_Library_v1.cs" />
+    <Compile Include="Migrations\202103121222107_Library_v1.designer.cs">
+      <DependentUpon>202103121222107_Library_v1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202103121222107_Library_v1.resx">
+      <DependentUpon>202103121222107_Library_v1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

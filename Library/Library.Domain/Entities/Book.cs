@@ -10,9 +10,20 @@ namespace Library.Domain.Entities
     public class Book
     {
         public int BookID { get; set; }
+
+        [Required(ErrorMessage = "Please enter a book title.")]
         public string Title { get; set; }
+
+        [Required(ErrorMessage = "Please enter an author.")]
         public string Author { get; set; }
+
+        [Required(ErrorMessage = "Please enter a description.")]
         public string Description { get; set; }
+
+        [Required(ErrorMessage = "Please enter a book genre.")]
         public string Classification { get; set; }
+
+        public byte[] ImageData { get; set; }
+        public string ImageMimeType { get; set; }
     }
 }

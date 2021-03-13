@@ -9,10 +9,18 @@
     @Scripts.Render("~/bundles/mainScripts")
     <title>@ViewBag.Title</title>
 </head>
-    <body>
-        <header>
-            <h3>@Html.ActionLink("Library", "List", "Book")</h3>
-            <div class="headerContainer">
+<body>
+    <header class="siteHeader">
+        <div class="navTop">
+            @Html.ActionLink("Library", "List", "Book")
+            <input type="text" placeholder="Search book" />
+            <button type="submit" class="searchButton"><i class="fa fa-search"></i></button>
+        </div>
+        <div class="navBottom">
+            <div class="navBottom left">
+                @Html.ActionLink("Home", "List", "Book")
+            </div>
+            <div class="navBottom right">
                 @if (User.Identity.IsAuthenticated)
                 {
                     @Html.ActionLink("Admin Panel", "Index", "Admin")
@@ -24,15 +32,19 @@
                     @Html.ActionLink("Register", "Register", "Register")
                 }
             </div>
-        </header>
-        @if (TempData["Message"] != null)
-        {
-            var messageModel = (Message)TempData["Message"];
-            <div class="@messageModel.ClassName" onclick="CloseAlert(this)">
-                @Html.Raw(messageModel.Text)
-            </div>
-        }
+        </div>
+    </header>
+    @if (TempData["Message"] != null)
+    {
+        var messageModel = (Message)TempData["Message"];
+        <div class="@messageModel.ClassName" onclick="CloseAlert(this)">
+            @Html.Raw(messageModel.Text)
+        </div>
+    }
+    <main>
         @RenderBody()
-        <footer></footer>
-    </body>
+    </main>
+
+    <footer></footer>
+</body>
 </html>

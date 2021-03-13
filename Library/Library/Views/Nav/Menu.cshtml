@@ -1,22 +1,25 @@
 ﻿@model IEnumerable<string>
-    
-@Html.ActionLink("Home Page", "List", "Book",  null, new { @class = "menuItem" })
 
-@foreach(string x in Model)
-{
-    @Html.RouteLink(
-    x,
-    new
+<span class="navCategoryText">Category</span>
+<ul>
+    @foreach (string x in Model)
     {
-        controller = "Book",
-        action = "List",
-        genre = x,
-        page = 1
-    },
-    new
-    {
-        @class = "menuItem" +
-        (ViewBag.genre == x ? " menuItemSelected" : "")
+    <li>
+        @Html.RouteLink(
+        x,
+        new
+        {
+            controller = "Book",
+            action = "List",
+            genre = x,
+            page = 1
+        },
+        new
+        {
+            @class = "menuItem" +
+            (ViewBag.genre == x ? " menuItemSelected" : "")
+        }
+        )
+    </li>
     }
-    )
-}
+</ul>    
