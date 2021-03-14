@@ -54,5 +54,28 @@ namespace Library.Controllers
                 return null;
             }
         }
+
+        [HttpGet]
+        public ActionResult SearchResults(string name)
+        {
+            if (!String.IsNullOrEmpty(name))
+            {
+                IEnumerable<Book> book = repository.Books.Where(x => x.Title.ToLower().Contains(name.ToLower()));
+                if (book.Any())
+                {
+                    return View(book);
+                }
+                else
+                {
+                    TempData["Message"] = new Message() { Text = "Info! <strong>No books with that title.</strong>", ClassName = "alertMessage info" };
+                    return RedirectToAction("List", "Book");
+                }
+            }
+            else
+            {
+                return RedirectToAction("List", "Book");
+            }
+            
+        }
     }
 }

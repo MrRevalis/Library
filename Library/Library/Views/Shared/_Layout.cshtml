@@ -13,8 +13,11 @@
     <header class="siteHeader">
         <div class="navTop">
             @Html.ActionLink("Library", "List", "Book")
-            <input type="text" placeholder="Search book" />
-            <button type="submit" class="searchButton"><i class="fa fa-search"></i></button>
+            @using (Html.BeginForm("SearchResults", "Book", FormMethod.Get))
+            {
+                <input type="text" placeholder="Search book" id="name" name="name" />
+                <button type="submit" class="searchButton"><i class="fa fa-search"></i></button>
+            }
         </div>
         <div class="navBottom">
             <div class="navBottom left">
