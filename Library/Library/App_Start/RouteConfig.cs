@@ -46,6 +46,12 @@ namespace Library
                 );
 
             routes.MapRoute(
+            null,
+            "{controller}/{action}/{ID}",
+            new { controller = "Book", action = "Description", ID = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 null,
                 "{controller}/{action}"
                 );

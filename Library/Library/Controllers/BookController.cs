@@ -42,9 +42,9 @@ namespace Library.Controllers
             return View(booksModel);
         }
 
-        public FileContentResult GetImage(int bookID)
+        public FileContentResult GetImage(int ID)
         {
-            Book book = repository.Books.FirstOrDefault(x => x.BookID == bookID);
+            Book book = repository.Books.FirstOrDefault(x => x.BookID == ID);
             if(book != null)
             {
                 return File(book.ImageData, book.ImageMimeType);
@@ -76,6 +76,20 @@ namespace Library.Controllers
                 return RedirectToAction("List", "Book");
             }
             
+        }
+
+        public ActionResult Description(int? ID)
+        {
+            Book book = repository.Books.FirstOrDefault(x => x.BookID == ID);
+            if(book != null)
+            {
+                return View(book);
+            }
+            else
+            {
+                ViewBag.Error = $"Book with ID {ID} cannot be found!";
+                return View("Error");
+            }
         }
     }
 }

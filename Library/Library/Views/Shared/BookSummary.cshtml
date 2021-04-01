@@ -3,9 +3,18 @@
 @{ 
     var className = (string)ViewData["className"];
 }
-
-<div class="itemContainer @className">
-    <img width="150" height="250" src="@Url.Action("GetImage", "Book", new { Model.BookID})" />
-    <h5>@Model.Title</h5>
-    <h6>@Model.Author</h6>
-</div>
+<a href="@Url.Action("Description", "Book", new { ID = Model.BookID } )" class="bookHref">
+    <div class="itemContainer @className">
+        <img width="150" height="250" src="@Url.Action("GetImage", "Book", new { ID = Model.BookID})" />
+        @using(Html.BeginForm("Add", "Shelf"))
+        {
+            <div class="hideButton">
+                @Html.HiddenFor(x => x.BookID)
+                @Html.Hidden("returnURL", Request.Url.PathAndQuery)
+                <input class="addButton" type="submit" value="Add to the shelf" />
+            </div>
+        }
+        <h5>@Model.Title</h5>
+        <h6>@Model.Author</h6>
+    </div>
+</a>
