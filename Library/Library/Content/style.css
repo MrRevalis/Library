@@ -457,3 +457,16 @@ form > h1 {
     font-size: 1.3rem;
     margin: 0.2em;
 }
+
+.shelfTable {
+    text-align: center;
+}
+
+.shelfRow:hover td {
+    border: 1px solid #a49f9e !important;
+    box-shadow: 0 2px 8px #a49f9e;
+    z-index: 100;
+    background-color: #a49f9e;
+    color: white;
+    cursor: pointer;
+}

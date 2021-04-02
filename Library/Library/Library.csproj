@@ -310,6 +310,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NavController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\ShelfController.cs" />
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -345,6 +346,7 @@
     <Content Include="Views\Book\SearchResults.cshtml" />
     <Content Include="Views\Book\Description.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shelf\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

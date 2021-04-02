@@ -9,6 +9,7 @@ namespace Library.Domain.Entities
 {
     public class Book
     {
+        [Key]
         public int BookID { get; set; }
 
         [Required(ErrorMessage = "Please enter a book title.")]
@@ -23,6 +24,7 @@ namespace Library.Domain.Entities
         [Required(ErrorMessage = "Please enter a book genre.")]
         public string Classification { get; set; }
 
+        [Display(Name = "Book cover")]
         public byte[] ImageData { get; set; }
         public string ImageMimeType { get; set; }
     }

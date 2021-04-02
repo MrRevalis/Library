@@ -102,24 +102,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IAccountRepository.cs" />
+    <Compile Include="Abstract\IShelfRepository.cs" />
     <Compile Include="Abstract\IBookRepository.cs" />
     <Compile Include="Concrete\EFAccountRepository.cs" />
+    <Compile Include="Concrete\EFShelfRepository.cs" />
     <Compile Include="Concrete\EFBookRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\AppUser.cs" />
     <Compile Include="Entities\AppUserManager.cs" />
     <Compile Include="Entities\Book.cs" />
+    <Compile Include="Entities\Shelf.cs" />
     <Compile Include="Infrastructure\CustomPasswordValidator.cs" />
     <Compile Include="Migrations\202103121222107_Library_v1.cs" />
     <Compile Include="Migrations\202103121222107_Library_v1.designer.cs">
       <DependentUpon>202103121222107_Library_v1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104012239018_LibraryFK.cs" />
+    <Compile Include="Migrations\202104012239018_LibraryFK.designer.cs">
+      <DependentUpon>202104012239018_LibraryFK.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202103121222107_Library_v1.resx">
       <DependentUpon>202103121222107_Library_v1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104012239018_LibraryFK.resx">
+      <DependentUpon>202104012239018_LibraryFK.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

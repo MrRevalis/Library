@@ -49,6 +49,7 @@ namespace Library.Infrastructure
 
             kernel.Bind<IBookRepository>().ToConstant(mock.Object);*/
             kernel.Bind<IBookRepository>().To<EFBookRepository>();
+            kernel.Bind<IShelfRepository>().To<EFShelfRepository>();
             //kernel.Bind<IAccountRepository>().To<EFAccountRepository>();
             kernel.Bind<AppUserManager>().ToMethod(x => HttpContext.Current.GetOwinContext().GetUserManager<AppUserManager>());
             kernel.Bind<IAuthenticationManager>().ToMethod(x => HttpContext.Current.GetOwinContext().Authentication).InRequestScope();

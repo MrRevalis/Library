@@ -11,6 +11,16 @@
         </nav>
     }
 
+    @if (User.Identity.IsAuthenticated)
+    {
+        <nav class="leftMenu">
+            <span class="navCategoryText">Library</span>
+            <ul>
+                <li>@Html.ActionLink("Bookshelf", "Index", "Shelf")</li>
+            </ul>
+        </nav>
+    }
+
     <nav class="leftMenu">
         <span class="navCategoryText">Category</span>
         <ul>

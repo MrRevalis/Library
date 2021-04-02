@@ -28,6 +28,7 @@ namespace Library.Domain.Concrete
 
         public DbSet<Book> Books { get; set; }
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<Shelf> ShelfBooks { get; set; }
     }
 
     public class IdentityDbInit: NullDatabaseInitializer<EFDbContext>
