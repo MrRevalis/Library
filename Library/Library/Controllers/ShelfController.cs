@@ -19,23 +19,33 @@ namespace Library.Controllers
             UserManager = userManager;
         }
 
+        [Authorize]
         public ActionResult Add(int bookID, string returnURL)
         {
             AppUser user = UserManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
-            if(ShelfRepository.CheckExisting(user.Id, bookID))
+            if(user != null)
             {
-                TempData["Message"] = new Message() { Text = "Info! <strong>You have already added this book to your shelf.</strong>", ClassName = "alertMessage info" };
+                if (ShelfRepository.CheckExisting(user.Id, bookID))
+                {
+                    TempData["Message"] = new Message() { Text = "Info! <strong>You have already added this book to your shelf.</strong>", ClassName = "alertMessage info" };
+                }
+                else
+                {
+                    Shelf shelf = new Shelf() { BookID = bookID, UserID = user.Id };
+                    ShelfRepository.AddBookToShelf(shelf);
+                    TempData["Message"] = new Message() { Text = "Success! <strong>You have successfully added book to your shelf.</strong>", ClassName = "alertMessage successful" };
+                }
             }
             else
             {
-                Shelf shelf = new Shelf() { BookID = bookID, UserID = user.Id };
-                ShelfRepository.AddBookToShelf(shelf);
-                TempData["Message"] = new Message() { Text = "Success! <strong>You have successfully added book to your shelf.</strong>", ClassName = "alertMessage successful" };
+                TempData["Message"] = new Message() { Text = "Error! <strong>User is not logged in.</strong>", ClassName = "alertMessage error" };
             }
+
 
             return Redirect(returnURL);
         }
 
+        [Authorize]
         public ActionResult Index()
         {
             AppUser user = UserManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
@@ -44,6 +54,7 @@ namespace Library.Controllers
             return View(bookShelf);
         }
 
+        [Authorize]
         public ActionResult Delete(int shelfID)
         {
             bool deleted = ShelfRepository.RemoveBookFromShelf(shelfID);

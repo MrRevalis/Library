@@ -22,6 +22,7 @@ namespace Library.Controllers
             repository = repositoryParam;
         }
 
+        [Authorize]
         public ActionResult Index()
         {
             IEnumerable<BooksViewModel> booksModel = repository.Books.
@@ -36,13 +37,14 @@ namespace Library.Controllers
 
             return View(booksModel);
         }
-
+        [Authorize]
         public ActionResult Edit(int bookID)
         {
             Book book = repository.Books.FirstOrDefault(x => x.BookID == bookID);
             return View(book);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Edit(Book book, HttpPostedFileBase image = null)
         {
@@ -73,12 +75,12 @@ namespace Library.Controllers
                 return View(book);
             }
         }
-
+        [Authorize]
         public ActionResult Create()
         {
             return View("Edit", new Book());
         }
-
+        [Authorize]
         public ActionResult Delete(int bookID)
         {
             bool deleted = repository.DeleteBook(bookID);

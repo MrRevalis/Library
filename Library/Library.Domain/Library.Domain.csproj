@@ -109,6 +109,8 @@
     <Compile Include="Concrete\EFBookRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Entities\Account.cs" />
+    <Compile Include="Entities\AppRole.cs" />
+    <Compile Include="Entities\AppRoleManager.cs" />
     <Compile Include="Entities\AppUser.cs" />
     <Compile Include="Entities\AppUserManager.cs" />
     <Compile Include="Entities\Book.cs" />
@@ -122,6 +124,10 @@
     <Compile Include="Migrations\202104012239018_LibraryFK.designer.cs">
       <DependentUpon>202104012239018_LibraryFK.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104022118451_Roles.cs" />
+    <Compile Include="Migrations\202104022118451_Roles.designer.cs">
+      <DependentUpon>202104022118451_Roles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104012239018_LibraryFK.resx">
       <DependentUpon>202104012239018_LibraryFK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104022118451_Roles.resx">
+      <DependentUpon>202104022118451_Roles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

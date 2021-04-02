@@ -53,6 +53,8 @@ namespace Library.Infrastructure
             //kernel.Bind<IAccountRepository>().To<EFAccountRepository>();
             kernel.Bind<AppUserManager>().ToMethod(x => HttpContext.Current.GetOwinContext().GetUserManager<AppUserManager>());
             kernel.Bind<IAuthenticationManager>().ToMethod(x => HttpContext.Current.GetOwinContext().Authentication).InRequestScope();
+
+            kernel.Bind<AppRoleManager>().ToMethod(x => HttpContext.Current.GetOwinContext().GetUserManager<AppRoleManager>());
         }
     }
 }
