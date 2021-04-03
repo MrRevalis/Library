@@ -9,6 +9,7 @@ namespace Library.ViewModels
     public class RoleViewModel
     {
         [Required]
+        [Display(Name = "Role name")]
         public string RoleName { get; set; }
     }
 }

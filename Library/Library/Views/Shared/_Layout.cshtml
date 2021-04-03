@@ -13,7 +13,7 @@
     <header class="siteHeader">
         <div class="navTop">
             @Html.ActionLink("Library", "List", "Book")
-            @using (Html.BeginForm("SearchResults", "Book", FormMethod.Get))
+            @using (Html.BeginForm("SearchResults", "Book", FormMethod.Get, new { @class = "searchBar" }))
             {
                 <input type="text" placeholder="Search book" id="name" name="name" />
                 <button type="submit" class="searchButton"><i class="fa fa-search"></i></button>

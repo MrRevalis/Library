@@ -326,6 +326,7 @@
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BooksViewModel.cs" />
+    <Compile Include="ViewModels\EditRoleViewModel.cs" />
     <Compile Include="ViewModels\RoleViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -350,6 +351,8 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shelf\Index.cshtml" />
     <Content Include="Views\Roles\CreateRole.cshtml" />
+    <Content Include="Views\Roles\List.cshtml" />
+    <Content Include="Views\Roles\EditRole.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

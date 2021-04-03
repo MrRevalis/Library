@@ -1,0 +1,42 @@
+﻿@using Library.Domain.Entities
+@model IEnumerable<AppRole>
+
+
+@{
+    ViewBag.Title = "List of roles";
+}
+<article style="width: 100%;">
+    @if (Model.Any())
+    {
+        <h1>List of roles: </h1>
+        @Html.ActionLink("Add new role", "CreateRole", "Roles", new { @class = "button" })
+
+        foreach (var x in Model)
+        {
+
+            <div class="card">
+                <div class="cardHeader">
+                    ID: @x.Id
+                </div>
+                <div class="cardBody">
+                    @x.Name
+                </div>
+                <div class="cardSetting">
+                    @Html.ActionLink(" ", "EditRole", new { ID = x.Id }, new { @class = "editIcon" })
+                    @Html.ActionLink(" ", "Delete", "", new { @class = "deleteIcon" })
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="card">
+            <div class="cardHeader">
+                Empty
+            </div>
+            <div class="cardBody">
+                @Html.ActionLink("Add new role", "CreateRole", "Roles", new { @class = "button" })
+            </div>
+        </div>
+    }
+</article>

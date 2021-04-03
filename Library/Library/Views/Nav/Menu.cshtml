@@ -7,7 +7,13 @@
             <span class="navCategoryText">Admin Panel</span>
             <ul>
                 <li>@Html.ActionLink("Book management", "Index", "Admin")</li>
-                <li>@Html.ActionLink("Roles management", "CreateRole", "Roles")</li>
+                <li>Roles management
+                    <ul>
+                        <li>@Html.ActionLink("Add role", "CreateRole", "Roles")</li>
+                        <li>@Html.ActionLink("List of roles", "List", "Roles")</li>
+                    </ul>
+                </li>
+
             </ul>
         </nav>
     }

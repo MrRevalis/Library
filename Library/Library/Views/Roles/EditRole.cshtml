@@ -1,0 +1,61 @@
+﻿@model Library.ViewModels.EditRoleViewModel
+
+@{
+    ViewBag.Title = "Edit Role";
+}
+<article style="width: 100%;">
+    <h2>Edit role</h2>
+    @using (Html.BeginForm())
+    {
+        <div class="formGroup">
+            @Html.LabelFor(x => x.Role.Id)
+            <div class="formRows">
+                @Html.EditorFor(x => x.Role.Id, new { htmlAttributes = new { @readonly = "readonly", @class = "inputDisabled" } })
+                @Html.ValidationMessageFor(x => x.Role.Id, "")
+            </div>
+        </div>
+        <div class="formGroup">
+            @Html.LabelFor(x => x.Role.Name)
+            <div class="formRows">
+                @Html.EditorFor(x => x.Role.Name)
+                @Html.ValidationMessageFor(x => x.Role.Name, "")
+            </div>
+        </div>
+        @Html.ValidationSummary(true)
+        <div class="submitSection">
+            <input type="submit" value="Update" />
+        </div>
+    }
+
+    @if (Model.Members.Any())
+    {
+        <div class="card">
+            <div class="cardHeader">
+                Users in role
+            </div>
+            <div class="cardBody">
+                @foreach (var x in Model.Members)
+                {
+                    <p>@x.UserName</p>
+                }
+            </div>
+            <div class="cardSetting">
+                @Html.ActionLink("Add user", "AddToRole", "Roles", new { @class = "button" })
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="card">
+            <div class="cardHeader">
+                Users in role @Model.Role.Name
+            </div>
+            <div class="cardBody">
+                None at the moment
+            </div>
+            <div class="cardSetting">
+                @Html.ActionLink("Add user", "AddToRole", "Roles", new { @class = "button inCard" })
+            </div>
+        </div>
+    }
+</article>
