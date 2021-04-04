@@ -22,7 +22,7 @@
             </div>
         </div>
         @Html.ValidationSummary(true)
-        <div class="submitSection">
+        <div class="submitSectionBlue">
             <input type="submit" value="Update" />
         </div>
     }
@@ -40,7 +40,7 @@
                 }
             </div>
             <div class="cardSetting">
-                @Html.ActionLink("Add user", "AddToRole", "Roles", new { @class = "button" })
+                @Html.ActionLink("Manage user in role", "ManageRole", "Roles", new { roleID = Model.Role.Id }, new { @class = "button inCard" })
             </div>
         </div>
     }
@@ -54,7 +54,7 @@
                 None at the moment
             </div>
             <div class="cardSetting">
-                @Html.ActionLink("Add user", "AddToRole", "Roles", new { @class = "button inCard" })
+                @Html.ActionLink("Manage user in role", "ManageRole", "Roles", new { roleID = Model.Role.Id }, new { @class = "button inCard" })
             </div>
         </div>
     }

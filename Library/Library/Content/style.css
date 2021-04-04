@@ -298,6 +298,26 @@ form > h1 {
     border-color: #FBC5C0;
 }
 
+/* Submit section blue */
+.submitSectionBlue {
+    margin-left: 1em;
+}
+
+.submitSectionBlue > input {
+    padding: 1em;
+    color: white;
+    background-color: #4e9af1;
+    border: 1px solid #4e9af1;
+    border-radius: 0.3em;
+    outline: none;
+}
+
+.submitSectionBlue > input:hover {
+    background-color: #95c2f7;
+    border-color: #95c2f7;
+    cursor: pointer;
+}
+
 .returnButton {
     padding: 0.5em;
     background-color: #f67062;
@@ -500,12 +520,15 @@ form > h1 {
     border-bottom: 1px solid #C0C0C0;
     background-color: #DCDCDC;
     padding: 0.5em;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
 }
 
 .cardBody {
     padding: 1em;
-    font-size: 1.1rem;
+}
+
+.cardRow {
+    padding: 0.5em;
 }
 
 .cardSetting {

@@ -109,5 +109,104 @@ namespace Library.Controllers
                 return View(model);
             }
         }
+
+        public async Task<ActionResult> DeleteRole(string ID)
+        {
+            AppRole appRole = await RoleManager.FindByIdAsync(ID);
+            if(appRole == null)
+            {
+                ViewBag.Error = $"Error occurred while deleting role with ID = {ID}";
+                return View("Error");
+            }
+            else
+            {
+                IdentityResult identityResult = await RoleManager.DeleteAsync(appRole);
+                if (identityResult.Succeeded)
+                {
+                    TempData["Message"] = new Message() { Text = "Success! <strong>You have successfully deleted a role.</strong>", ClassName = "alertMessage successful" };
+                    return RedirectToAction("List");
+                }
+                foreach (var x in identityResult.Errors)
+                {
+                    ModelState.AddModelError("", x);
+                }
+                TempData["Message"] = new Message() { Text = "Error! <strong>There was a problem while deleting a role.</strong>", ClassName = "alertMessage error" };
+                return View();
+            }
+        }
+
+        public async Task<ActionResult> ManageRole(string roleID)
+        {
+            AppRole appRole = await RoleManager.FindByIdAsync(roleID);
+
+            if(appRole == null)
+            {
+                ViewBag.Error = $"Error occurred while looking for role with ID = {roleID}";
+                return View("Error");
+            }
+
+            UserInRoleViewModel userList = new UserInRoleViewModel();
+            userList.RoleID = appRole.Id;
+            userList.RoleName = appRole.Name;
+
+            foreach(AppUser user in UserManager.Users)
+            {
+                userList.Users.Add(user.UserName);
+                if(await UserManager.IsInRoleAsync(user.Id, appRole.Name))
+                {
+                    userList.IsInRole.Add(true);
+                }
+                else
+                {
+                    userList.IsInRole.Add(false);
+                }
+            }
+            return View(userList);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ManageRole(UserInRoleViewModel userList)
+        {
+            AppRole appRole = await RoleManager.FindByIdAsync(userList.RoleID);
+
+            if (appRole == null)
+            {
+                ViewBag.Error = $"Error occurred while looking for role with ID = {userList.RoleID}";
+                return View("Error");
+            }
+
+            for (int i = 0; i < userList.IsInRole.Count; i++)
+            {
+                AppUser user = await UserManager.FindByNameAsync(userList.Users[i]);
+                IdentityResult result;
+                if (userList.IsInRole[i] && !(await UserManager.IsInRoleAsync(user.Id, userList.RoleName)))
+                {
+                    result = await UserManager.AddToRoleAsync(user.Id, userList.RoleName);
+
+                }
+                else if(!userList.IsInRole[i] && await UserManager.IsInRoleAsync(user.Id, userList.RoleName))
+                {
+                    result = await UserManager.RemoveFromRoleAsync(user.Id, userList.RoleName);
+                }
+                else
+                {
+                    continue;
+                }
+
+                if (result.Succeeded)
+                {
+                    if(i < userList.IsInRole.Count)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        return RedirectToAction("EditRole", new { id = userList.RoleID });
+                    }
+                }
+            }
+
+            return RedirectToAction("EditRole", new { id = userList.RoleID });
+        }
     }
 }

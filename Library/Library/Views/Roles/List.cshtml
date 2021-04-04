@@ -23,7 +23,7 @@
                 </div>
                 <div class="cardSetting">
                     @Html.ActionLink(" ", "EditRole", new { ID = x.Id }, new { @class = "editIcon" })
-                    @Html.ActionLink(" ", "Delete", "", new { @class = "deleteIcon" })
+                    @Html.ActionLink(" ", "DeleteRole", new { ID = x.Id }, new { @class = "deleteIcon" })
                 </div>
             </div>
         }

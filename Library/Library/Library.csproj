@@ -328,6 +328,7 @@
     <Compile Include="ViewModels\BooksViewModel.cs" />
     <Compile Include="ViewModels\EditRoleViewModel.cs" />
     <Compile Include="ViewModels\RoleViewModel.cs" />
+    <Compile Include="ViewModels\UserInRoleViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -353,6 +354,7 @@
     <Content Include="Views\Roles\CreateRole.cshtml" />
     <Content Include="Views\Roles\List.cshtml" />
     <Content Include="Views\Roles\EditRole.cshtml" />
+    <Content Include="Views\Roles\ManageRole.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
