@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace Library.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class RolesController : Controller
     {
 
@@ -171,7 +172,7 @@ namespace Library.Controllers
 
             if (appRole == null)
             {
-                ViewBag.Error = $"Error occurred while looking for role with ID = {userList.RoleID}";
+                ViewBag.Error = $"Error occurred while looking for role with ID = {userList.RoleID ?? "NULL ID"}";
                 return View("Error");
             }
 

@@ -36,6 +36,11 @@ namespace Library.Controllers
         [AllowAnonymous]
         public ActionResult Login()
         {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                ViewBag.Error = $"Access denied!";
+                return View("Error");
+            }
             return View();
         }
 

@@ -5,7 +5,7 @@
 }
 
 <article style="width: 100%;">
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("ManageRole", "Roles", FormMethod.Post, new { @class = "formLeft" }))
     {
         <div class="card">
             <div class="cardHeader">
@@ -20,6 +20,7 @@
                         @Html.LabelFor(x => x.IsInRole[i], Model.Users[i])
 
                         @Html.HiddenFor(x => x.Users[i])
+                        @Html.HiddenFor(x => x.RoleID)
                     </div>
                 }
             </div>

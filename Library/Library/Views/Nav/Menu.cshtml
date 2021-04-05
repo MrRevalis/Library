@@ -1,18 +1,25 @@
 ﻿@model IEnumerable<string>
 
 <div class="menuContainer">
-    @if (User.Identity.IsAuthenticated)
+    @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Librarian")))
     {
         <nav class="leftMenu">
             <span class="navCategoryText">Admin Panel</span>
             <ul>
-                <li>@Html.ActionLink("Book management", "Index", "Admin")</li>
-                <li>Roles management
-                    <ul>
-                        <li>@Html.ActionLink("Add role", "CreateRole", "Roles")</li>
-                        <li>@Html.ActionLink("List of roles", "List", "Roles")</li>
-                    </ul>
-                </li>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Librarian"))
+                {
+                    <li>@Html.ActionLink("Book management", "Index", "Admin")</li>
+                }
+
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <li>Roles management
+                        <ul class="leftMenuSecond">
+                            <li>@Html.ActionLink("Add role", "CreateRole", "Roles")</li>
+                            <li>@Html.ActionLink("List of roles", "List", "Roles")</li>
+                        </ul>
+                    </li>
+                }
 
             </ul>
         </nav>
@@ -31,6 +38,9 @@
     <nav class="leftMenu">
         <span class="navCategoryText">Category</span>
         <ul>
+            <li>
+                @Html.RouteLink("Default",new { controller = "Book", action = "List"}, new { @class = "menuItem"})
+            </li>
             @foreach (string x in Model)
             {
                 <li>

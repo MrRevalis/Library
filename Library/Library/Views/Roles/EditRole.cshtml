@@ -5,7 +5,7 @@
 }
 <article style="width: 100%;">
     <h2>Edit role</h2>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("EditRole", "Roles", FormMethod.Post, new { @class = "formLeft" }))
     {
         <div class="formGroup">
             @Html.LabelFor(x => x.Role.Id)
@@ -34,10 +34,12 @@
                 Users in role
             </div>
             <div class="cardBody">
-                @foreach (var x in Model.Members)
-                {
-                    <p>@x.UserName</p>
-                }
+                <ul class="userList">
+                    @foreach (var x in Model.Members)
+                    {
+                        <li>@x.UserName</li>
+                    }
+                </ul>
             </div>
             <div class="cardSetting">
                 @Html.ActionLink("Manage user in role", "ManageRole", "Roles", new { roleID = Model.Role.Id }, new { @class = "button inCard" })

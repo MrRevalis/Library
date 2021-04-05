@@ -4,6 +4,7 @@ using Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Library
 {
@@ -19,6 +20,7 @@ namespace Library
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Login/Login"),
+                LogoutPath = new PathString("/Login/Logout")
             });
         }
     }
