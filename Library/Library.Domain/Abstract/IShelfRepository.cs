@@ -13,5 +13,6 @@ namespace Library.Domain.Abstract
         void AddBookToShelf(Shelf shelf);
         bool RemoveBookFromShelf(int shelfID);
         bool CheckExisting(string userID, int bookID);
+        void RemoveBooksFromUser(string userID);
     }
 }

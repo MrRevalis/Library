@@ -14,7 +14,7 @@
     </div>
 }
 <h4 class="middleText">@topText</h4>
-@using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "Librarian", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="formGroup">
         @Html.HiddenFor(x => x.BookID)

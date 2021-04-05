@@ -1,36 +1,40 @@
-﻿@using Library.ViewModels
-@model IEnumerable<BooksViewModel>
+﻿@using Library.Domain.Entities
+@model IEnumerable<AppUser>
 
 @{ 
-    ViewBag.Title = "Admin panel";
+    ViewBag.Title = "User list";
 }
 
-<article>
-    <table class="customTable">
-        <tbody>
-            <tr>
-                <th>@Html.DisplayNameFor(x => x.Title)</th>
-                <th>@Html.DisplayNameFor(x => x.Author)</th>
-                <th>@Html.DisplayNameFor(x => x.Description)</th>
-                <th>@Html.DisplayNameFor(x => x.Classification)</th>
-                <th></th>
-            </tr>
-            @foreach (var book in Model)
-            {
-                <tr>
-                    <td>@Html.DisplayFor(x => book.Title)</td>
-                    <td>@Html.DisplayFor(x => book.Author)</td>
-                    <td>@Html.DisplayFor(x => book.Description)</td>
-                    <td>@Html.DisplayFor(x => book.Classification)</td>
-                    <td>
-                        @Html.ActionLink(" ", "Edit", new { bookID = book.ID }, new { @class = "editIcon" })
-                        @Html.ActionLink(" ", "Delete", new { bookID = book.ID }, new { @class = "deleteIcon" })
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    <div class="submitSection">
-        @Html.ActionLink("Create new", "Create", "", new { @class = "returnButton" })
-    </div>
+<article style="width: 100%">
+    @if (Model.Any())
+    {
+        <h2>User amount: @Model.Count()</h2>
+        @Html.ActionLink("Add new user", "Register", "Register", new { @class = "button" })
+        foreach (AppUser x in Model)
+        {
+            <div class="card">
+                <div class="cardHeader">
+                    ID: @x.Id
+                </div>
+                <div class="cardBody">
+                    Login: @x.UserName
+                </div>
+                <div class="cardSetting">
+                    @Html.ActionLink(" ", "EditUser", new { ID = x.Id }, new { @class = "editIcon" })
+                    @Html.ActionLink(" ", "DeleteUser", new { ID = x.Id }, new { @class = "deleteIcon" })
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="card">
+            <div class="cardHeader">
+                No user created
+            </div>
+            <div class="cardBody">
+                @Html.ActionLink("Add new user", "Register", "Register", new { @class = "button" })
+            </div>
+        </div>
+    }
 </article>

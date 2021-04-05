@@ -8,15 +8,20 @@
             <ul>
                 @if (User.Identity.IsAuthenticated && User.IsInRole("Librarian"))
                 {
-                    <li>@Html.ActionLink("Book management", "Index", "Admin")</li>
+                    <li>@Html.ActionLink("Book management", "Index", "Librarian")</li>
                 }
 
                 @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                 {
-                    <li>Roles management
+                    <li>Roles Management
                         <ul class="leftMenuSecond">
                             <li>@Html.ActionLink("Add role", "CreateRole", "Roles")</li>
                             <li>@Html.ActionLink("List of roles", "List", "Roles")</li>
+                        </ul>
+                    </li>
+                    <li>User Management
+                        <ul>
+                            <li>@Html.ActionLink("Manage users", "Index", "Admin")</li>
                         </ul>
                     </li>
                 }

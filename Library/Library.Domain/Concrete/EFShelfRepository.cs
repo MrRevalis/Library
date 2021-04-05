@@ -41,5 +41,18 @@ namespace Library.Domain.Concrete
                 return false;
             }
         }
+
+        public void RemoveBooksFromUser(string userID)
+        {
+            List<Shelf> items = context.ShelfBooks.Where(x => x.UserID == userID).Select(y => y).ToList();
+            if (items.Any())
+            {
+                foreach(Shelf item in items)
+                {
+                    context.ShelfBooks.Remove(item);
+                }
+                context.SaveChanges();
+            }
+        }
     }
 }

@@ -1,0 +1,36 @@
+﻿@using Library.Domain.Entities
+@model IEnumerable<BooksViewModel>
+
+@{ 
+    ViewBag.Title = "Admin panel";
+}
+
+<article>
+    <table class="customTable">
+        <tbody>
+            <tr>
+                <th>@Html.DisplayNameFor(x => x.Title)</th>
+                <th>@Html.DisplayNameFor(x => x.Author)</th>
+                <th>@Html.DisplayNameFor(x => x.Description)</th>
+                <th>@Html.DisplayNameFor(x => x.Classification)</th>
+                <th></th>
+            </tr>
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(x => book.Title)</td>
+                    <td>@Html.DisplayFor(x => book.Author)</td>
+                    <td>@Html.DisplayFor(x => book.Description)</td>
+                    <td>@Html.DisplayFor(x => book.Classification)</td>
+                    <td>
+                        @Html.ActionLink(" ", "Edit", new { bookID = book.ID }, new { @class = "editIcon" })
+                        @Html.ActionLink(" ", "Delete", new { bookID = book.ID }, new { @class = "deleteIcon" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="submitSection">
+        @Html.ActionLink("Create new", "Create", "", new { @class = "returnButton" })
+    </div>
+</article>
