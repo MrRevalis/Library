@@ -342,6 +342,10 @@ form > h1 {
     border-color: #FBC5C0;
 }
 
+.submitSectionBlueRow{
+    display: inline-block;
+}
+
 /* Custom error messages */
 .alertMessage {
     position: absolute;
@@ -560,6 +564,7 @@ form > h1 {
     background-color: #4e9af1;
     color: white;
     text-align: center;
+    border: 0px;
 }
 
 .inCard {

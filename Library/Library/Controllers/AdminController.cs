@@ -2,6 +2,7 @@
 using Library.Domain.Entities;
 using Library.Models;
 using Library.ViewModels;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
@@ -73,6 +74,48 @@ namespace Library.Controllers
 
             await UserManager.DeleteAsync(user);
             return RedirectToAction("Index", "Admin");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> EditUser(AccountViewModel account)
+        {
+            if (ModelState.IsValid)
+            {
+                AppUser user = await UserManager.FindByIdAsync(account.ID);
+                if (user == null)
+                {
+                    ViewBag.Error = $"Error occurred while looking for a user with ID = {account.ID}";
+                    return View("Error");
+                }
+                else
+                {
+                    user.Email = account.Email;
+                    user.UserName = account.UserName;
+
+                    IdentityResult results = await UserManager.UpdateAsync(user);
+
+                    if (results.Succeeded)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        foreach(var error in results.Errors)
+                        {
+                            ModelState.AddModelError("", error);
+                        }
+                    }
+
+                    return View(account);
+                }
+            }
+            else
+                return View(account);
+        }
+
+        public async Task<ActionResult> Cancel()
+        {
+            return RedirectToAction("Index");
         }
     }
 }
