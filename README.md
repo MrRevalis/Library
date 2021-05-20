@@ -23,25 +23,25 @@ Project is created with:
 * Search bar to find a book of interest
 
 ## Default administrator account
-Default account created with administrator rights:
-Username: admin
+Default account created with administrator rights:\
+Username: admin\
 Password: zaq1@WSXc
 
 ## Interface
 
 | Main page|
 |-----------------|
-| <img src="https://user-images.githubusercontent.com/63982270/119058025-dc46e500-b9cd-11eb-8533-fbbeb59f8bcf.PNG" width="400">|         
+| <img src="https://user-images.githubusercontent.com/63982270/119058025-dc46e500-b9cd-11eb-8533-fbbeb59f8bcf.PNG">|         
 
 | Bookshelf|
 |-------------------|
-| <img src="https://user-images.githubusercontent.com/63982270/119058022-dbae4e80-b9cd-11eb-9822-d1c3b0d75b25.PNG" width="400">|
+| <img src="https://user-images.githubusercontent.com/63982270/119058022-dbae4e80-b9cd-11eb-9822-d1c3b0d75b25.PNG">|
 
 
 | Edit book| 
 |-----------------|
-| <img src="https://user-images.githubusercontent.com/63982270/119058024-dc46e500-b9cd-11eb-8a3b-b7b0b98c4ac1.PNG" width="400">|             
+| <img src="https://user-images.githubusercontent.com/63982270/119058024-dc46e500-b9cd-11eb-8a3b-b7b0b98c4ac1.PNG">|             
 
 |Book management|
 |-------------------|
-| <img src="https://user-images.githubusercontent.com/63982270/119058021-da7d2180-b9cd-11eb-9b90-4293cdf92868.PNG" width="400">|
+| <img src="https://user-images.githubusercontent.com/63982270/119058021-da7d2180-b9cd-11eb-9b90-4293cdf92868.PNG">|
