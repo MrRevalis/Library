@@ -1,11 +1,11 @@
 ﻿@using Library.Domain.Entities
 @model IEnumerable<AppRole>
 
-
 @{
     ViewBag.Title = "List of roles";
 }
-<article style="width: 100%;">
+@Html.Action("Menu", "Nav", new { genre = "roleList" })
+<article>
     @if (Model.Any())
     {
         <h1>List of roles: </h1>

@@ -1,10 +1,10 @@
 ﻿@using Library.Domain.Entities
 @model IEnumerable<BooksViewModel>
 
-@{ 
+@{
     ViewBag.Title = "Admin panel";
 }
-
+@Html.Action("Menu", "Nav", new { genre = "books" })
 <article>
     <table class="customTable">
         <tbody>

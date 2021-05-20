@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Add new role";
 }
-
+@Html.Action("Menu", "Nav", new { genre = "addRole" })
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

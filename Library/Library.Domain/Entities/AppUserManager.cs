@@ -36,6 +36,23 @@ namespace Library.Domain.Entities
                 RequireUniqueEmail = true
             };
 
+            const string name = "admin";
+            const string password = "zaq1@WSXc";
+            const string email = "admin@gmail.com";
+            const string role = "Admin";
+
+            AppUser user = manager.FindByName(name);
+            if(user == null)
+            {
+                user = new AppUser { UserName = name, Email = email };
+                manager.Create(user, password);
+            }
+            var userRole = manager.GetRoles(user.Id);
+            if (!userRole.Contains(role))
+            {
+                manager.AddToRole(user.Id, role);
+            }
+
             return manager;
         }
     }

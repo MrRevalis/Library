@@ -1,16 +1,47 @@
 # Library
 
-Foobar is an web application written in C# with usage of ASP.Net framework.
+## Table of contents
+- [General info](#general-info)
+- [Technologies](#technologies)
+- [Features](#features)
+- [Default administrator account](#Default-administrator-account)
+- [Interface](#interface)
 
-## Description
+## General info
 
-Application mimics the actions of a library, allowing you to manage a collection of books (CRUD), add accounts and borrow books.
+The application mimics the operation of a library, allowing you to manage books (add, edit or delete), manage your book collection (your own shelf to which you can add books), manage accounts and assign roles to them.
 
-![mainView](https://user-images.githubusercontent.com/63982270/113784102-1d907780-9735-11eb-98af-9fed3b546c51.PNG)
+## Technologies
+Project is created with:
+* ASP.NET
 
-## Main functions
+## Features
 * User registration/logging in.
 * Book management (add new books, edit or delete)
 * Role-based authorization - assigning users to selected roles, for example, a librarian has access to edit books and an administrator to manage users.
 * Adding to the collection of books by the user.
 * Search bar to find a book of interest
+
+## Default administrator account
+Default account created with administrator rights:
+Username: admin
+Password: zaq1@WSXc
+
+## Interface
+
+| Main page|
+|-----------------|
+| <img src="https://user-images.githubusercontent.com/63982270/119058025-dc46e500-b9cd-11eb-8533-fbbeb59f8bcf.PNG" width="400">|         
+
+| Bookshelf|
+|-------------------|
+| <img src="https://user-images.githubusercontent.com/63982270/119058022-dbae4e80-b9cd-11eb-9822-d1c3b0d75b25.PNG" width="400">|
+
+
+| Edit book| 
+|-----------------|
+| <img src="https://user-images.githubusercontent.com/63982270/119058024-dc46e500-b9cd-11eb-8a3b-b7b0b98c4ac1.PNG" width="400">|             
+
+|Book management|
+|-------------------|
+| <img src="https://user-images.githubusercontent.com/63982270/119058021-da7d2180-b9cd-11eb-9b90-4293cdf92868.PNG" width="400">|

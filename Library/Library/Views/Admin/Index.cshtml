@@ -1,10 +1,10 @@
 ﻿@using Library.Domain.Entities
 @model IEnumerable<AppUser>
 
-@{ 
+@{
     ViewBag.Title = "User list";
 }
-
+@Html.Action("Menu", "Nav", new { genre = "users" })
 <article style="width: 100%">
     @if (Model.Any())
     {

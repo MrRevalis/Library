@@ -4,7 +4,7 @@
     ViewBag.Title = "Bookshelf";
     int i = 1;
 }
-
+@Html.Action("Menu", "Nav", new { genre = "bookShelf" })
 <article>
     <h3>Bookshelf (@Model.Count() number of books)</h3>
     <table class="customTable shelfTable">

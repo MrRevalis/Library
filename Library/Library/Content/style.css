@@ -77,20 +77,24 @@ body {
 }
 
 main {
-    width: 75%;
+    width: 90%;
     margin: auto;
     margin-top: 1em;
     display: flex;
     flex-direction: row;
 }
 
+article{
+    margin: auto;
+    width: 100%;
+}
 /* Left menu */
 .menuContainer {
-    width: 25%;
+    width: 30%;
 }
 
 .leftMenu {
-    width: 75%;
+    width: 90%;
     height: max-content;
     background-color: white;
     justify-content: flex-start;
