@@ -4,32 +4,34 @@
     ViewBag.Title = "Manage role";
 }
 
-<article style="width: 100%;">
-    @using (Html.BeginForm("ManageRole", "Roles", FormMethod.Post, new { @class = "formLeft" }))
-    {
-        <div class="card">
-            <div class="cardHeader">
-                Manage users in role: @Model.RoleName
-            </div>
-            @Html.HiddenFor(x => x.RoleName)
-            <div class="cardBody">
-                @for (int i = 0; i < Model.Users.Count(); i++)
-                {
-                    <div class="cardRow">
-                        @Html.CheckBoxFor(x => x.IsInRole[i])
-                        @Html.LabelFor(x => x.IsInRole[i], Model.Users[i])
+<section>
+    <article>
+        @using (Html.BeginForm("ManageRole", "Roles", FormMethod.Post, new { @class = "formLeft" }))
+        {
+            <div class="card">
+                <div class="cardHeader">
+                    Manage users in role: @Model.RoleName
+                </div>
+                @Html.HiddenFor(x => x.RoleName)
+                <div class="cardBody">
+                    @for (int i = 0; i < Model.Users.Count(); i++)
+                    {
+                        <div class="cardRow">
+                            @Html.CheckBoxFor(x => x.IsInRole[i])
+                            @Html.LabelFor(x => x.IsInRole[i], Model.Users[i])
 
-                        @Html.HiddenFor(x => x.Users[i])
-                        @Html.HiddenFor(x => x.RoleID)
+                            @Html.HiddenFor(x => x.Users[i])
+                            @Html.HiddenFor(x => x.RoleID)
+                        </div>
+                    }
+                </div>
+
+                <div class="cardSetting">
+                    <div class="submitSectionBlue">
+                        <input type="submit" value="Update" class="inCard" />
                     </div>
-                }
-            </div>
-
-            <div class="cardSetting">
-                <div class="submitSectionBlue">
-                    <input type="submit" value="Update" class="inCard" />
                 </div>
             </div>
-        </div>
-    }
-</article>
+        }
+    </article>
+</section>

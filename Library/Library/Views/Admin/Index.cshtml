@@ -5,36 +5,48 @@
     ViewBag.Title = "User list";
 }
 @Html.Action("Menu", "Nav", new { genre = "users" })
-<article style="width: 100%">
-    @if (Model.Any())
-    {
-        <h2>User amount: @Model.Count()</h2>
-        @Html.ActionLink("Add new user", "Register", "Register", new { @class = "button" })
-        foreach (AppUser x in Model)
+<section>
+    <article>
+        @if (Model.Any())
+        {
+            <h2>User amount: @Model.Count()</h2>
+            @Html.ActionLink("Add new user", "Register", "Register", null, new { @class = "button" })
+            foreach (AppUser x in Model)
+            {
+                <div class="card">
+                    <div class="cardHeader">
+                        ID: @x.Id
+                    </div>
+                    <div class="cardBody">
+                        Login: @x.UserName 
+                    </div>
+                    <div class="cardSetting">
+                        @Html.ActionLink(" ", "EditUser", new { ID = x.Id }, new { @class = "editIcon" })
+                        @using(Html.BeginForm("DeleteUser", "Admin", new { ID = x.Id }, FormMethod.Post, new { @class = "formInline" }))
+                        {
+                            <div id="delete_@x.Id">
+                                <button type="button" class="deleteIcon" onclick="ConfirmDelete('@x.Id', true)"></button>
+                            </div>
+                            <div id="confirm_@x.Id" style="display:none;">
+                                <span class="nonClickAble">Are you sure you want to delete?</span>
+                                <button type="submit" value="Yes" class="confirmIcon"></button>
+                                <button type="button" value="No" onclick="ConfirmDelete('@x.Id', false)" class="cancelIcon"></button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        }
+        else
         {
             <div class="card">
                 <div class="cardHeader">
-                    ID: @x.Id
+                    No user created
                 </div>
                 <div class="cardBody">
-                    Login: @x.UserName
-                </div>
-                <div class="cardSetting">
-                    @Html.ActionLink(" ", "EditUser", new { ID = x.Id }, new { @class = "editIcon" })
-                    @Html.ActionLink(" ", "DeleteUser", new { ID = x.Id }, new { @class = "deleteIcon" })
+                    @Html.ActionLink("Add new user", "Register", "Register", new { @class = "button" })
                 </div>
             </div>
         }
-    }
-    else
-    {
-        <div class="card">
-            <div class="cardHeader">
-                No user created
-            </div>
-            <div class="cardBody">
-                @Html.ActionLink("Add new user", "Register", "Register", new { @class = "button" })
-            </div>
-        </div>
-    }
-</article>
+    </article>
+</section>

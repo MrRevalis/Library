@@ -4,6 +4,7 @@
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
 }
+
 /*Header Menu*/
 .siteHeader {
     position: relative;
@@ -84,9 +85,15 @@ main {
     flex-direction: row;
 }
 
-article{
-    margin: auto;
+section {
     width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+article {
+    margin: auto;
+    width: 80%;
 }
 /* Left menu */
 .menuContainer {
@@ -287,6 +294,16 @@ form > h1 {
     border: 1px solid #808080 !important;
 }
 
+.formInline {
+    display: inline-block;
+    width: max-content;
+}
+
+.nonClickAble {
+    display: inline-block;
+    vertical-align: super;
+}
+
 /* Forms submit buttons */
 .submitSection {
     margin: 1em;
@@ -298,7 +315,6 @@ form > h1 {
     border: 1px solid #f67062;
     border-radius: 0.3em;
     font-size: 1.4rem;
-    width: 15%;
     outline: none;
 }
 
@@ -315,6 +331,8 @@ form > h1 {
 
 .submitSectionBlue > input {
     padding: 1em;
+    display: block;
+    width: 20%;
     color: white;
     background-color: #4e9af1;
     border: 1px solid #4e9af1;
@@ -344,10 +362,6 @@ form > h1 {
     color: white;
     background-color: #FBC5C0;
     border-color: #FBC5C0;
-}
-
-.submitSectionBlueRow{
-    display: inline-block;
 }
 
 /* Custom error messages */
@@ -430,6 +444,35 @@ form > h1 {
     width: 32px;
     height: 32px;
     background: url("../Images/delete.png");
+    border: none;
+}
+
+.deleteIcon:hover{
+    cursor: pointer;
+}
+
+.confirmIcon {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url("../Images/confirm.png");
+    border: none;
+}
+
+.confirmIcon:hover {
+    cursor: pointer;
+}
+
+.cancelIcon {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url("../Images/cancel.png");
+    border: none;
+}
+
+.cancelIcon:hover {
+    cursor: pointer;
 }
 
 .uploadName {
@@ -524,8 +567,8 @@ form > h1 {
 .card {
     border: 1px solid #C0C0C0;
     border-radius: 0.2em;
-    width: 50%;
-    display: block;
+    width: 70%;
+    display: inline-block;
     margin-bottom: 2em;
     margin: 1em;
 }
@@ -560,13 +603,15 @@ form > h1 {
 
 /* Button */
 .button {
-    display: inline-block;
+    display: block;
+    width: max-content;
     padding: 1em;
     margin: 1em;
     text-decoration: none;
     border-radius: 0.3em;
     background-color: #4e9af1;
     color: white;
+    font-size: 16px;
     text-align: center;
     border: 0px;
 }
@@ -577,6 +622,12 @@ form > h1 {
     margin: 0;
 }
 
+.inline {
+    display: inline-block;
+    margin: 0 0 0 1em;
+}
+
 .button:hover {
     background-color: #95c2f7;
+    cursor: pointer;
 }

@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<string>
 
-<div class="menuContainer">
+<nav class="menuContainer">
     @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Librarian")))
     {
         <nav class="leftMenu">
@@ -68,4 +68,4 @@
             }
         </ul>
     </nav>
-</div>
+</nav>

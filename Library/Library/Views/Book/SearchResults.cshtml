@@ -6,20 +6,22 @@
     var iterator = 1;
 }
 
-<article class="bookList">
-    <span class="pageTopic">@ViewBag.Title</span>
-    <div class="bookContainer">
-        @foreach (Book x in Model)
-        {
-            if (iterator % 3 == 0)
+<section>
+    <article class="bookList">
+        <span class="pageTopic">@ViewBag.Title</span>
+        <div class="bookContainer">
+            @foreach (Book x in Model)
             {
-                @Html.Partial("BookSummary", x, new ViewDataDictionary(ViewData) { { "className", "noRightBorder" } });
+                if (iterator % 3 == 0)
+                {
+                    @Html.Partial("BookSummary", x, new ViewDataDictionary(ViewData) { { "className", "noRightBorder" } });
+                }
+                else
+                {
+                    @Html.Partial("BookSummary", x);
+                }
+                iterator++;
             }
-            else
-            {
-                @Html.Partial("BookSummary", x);
-            }
-            iterator++;
-        }
-    </div>
-</article>
+        </div>
+    </article>
+</section>

@@ -9,24 +9,25 @@
 
 
 @Html.Action("Menu", "Nav")
-
-<article class="bookList">
-    <span class="pageTopic">@ViewBag.Title</span>
-    <div class="bookContainer">
-        @foreach (Book x in Model.Books)
-        {
-            if (iterator % 3 == 0)
+<section>
+    <article class="bookList">
+        <span class="pageTopic">@ViewBag.Title</span>
+        <div class="bookContainer">
+            @foreach (Book x in Model.Books)
             {
-                @Html.Partial("BookSummary", x , new ViewDataDictionary(ViewData) { { "className", "noRightBorder" } });
+                if (iterator % 3 == 0)
+                {
+                    @Html.Partial("BookSummary", x, new ViewDataDictionary(ViewData) { { "className", "noRightBorder" } });
+                }
+                else
+                {
+                    @Html.Partial("BookSummary", x);
+                }
+                iterator++;
             }
-            else
-            {
-                @Html.Partial("BookSummary", x);
-            }
-            iterator++;
-        }
-    </div>
-    <div class="selectPage">
-        @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x, genre = Model.BookGenre }))
-    </div>
-</article>
+        </div>
+        <div class="selectPage">
+            @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x, genre = Model.BookGenre }))
+        </div>
+    </article>
+</section>

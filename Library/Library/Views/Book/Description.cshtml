@@ -3,29 +3,30 @@
 @{ 
     ViewBag.Title = Model.Title;
 }
-
-<article style="width: 100%;">
-    <div class="bookDescription">
-        <div class="bookGalery">
-            <img width="200" height="300" src="@Url.Action("GetImage", "Book", new { ID = Model.BookID})" />
+<section>
+    <article>
+        <div class="bookDescription">
+            <div class="bookGalery">
+                <img width="200" height="300" src="@Url.Action("GetImage", "Book", new { ID = Model.BookID})" />
+            </div>
+            <div class="bookInfo">
+                <h2>@Model.Title</h2>
+                <h5>Author: @Model.Author</h5>
+            </div>
+            <div class="bookOrder">
+                @using (Html.BeginForm("Add", "Shelf"))
+                {
+                    <div>
+                        @Html.HiddenFor(x => x.BookID)
+                        @Html.Hidden("returnURL", Request.Url.PathAndQuery)
+                        <input class="addButton" type="submit" value="Add to the shelf" />
+                    </div>
+                }
+            </div>
         </div>
-        <div class="bookInfo">
-            <h2>@Model.Title</h2>
-            <h5>Author: @Model.Author</h5>
+        <div class="bookDesc">
+            <h3>Book description: </h3>
+            @Model.Description
         </div>
-        <div class="bookOrder">
-            @using (Html.BeginForm("Add", "Shelf"))
-            {
-                <div>
-                    @Html.HiddenFor(x => x.BookID)
-                    @Html.Hidden("returnURL", Request.Url.PathAndQuery)
-                    <input class="addButton" type="submit" value="Add to the shelf" />
-                </div>
-            }
-        </div>
-    </div>
-    <div class="bookDesc">
-        <h3>Book description: </h3>
-        @Model.Description
-    </div>
-</article>
+    </article>
+</section>

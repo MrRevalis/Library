@@ -8,3 +8,19 @@
 function CloseAlert(element) {
     element.remove();
 }
+
+
+function ConfirmDelete(elementID, toDelete) {
+    var deleteSpan = "delete_" + elementID;
+    var confirmSpan = "confirm_" + elementID;
+
+    if (toDelete) {
+        document.getElementById(deleteSpan).style.display = "none";
+        document.getElementById(confirmSpan).style.display = "";
+    }
+    else {
+        document.getElementById(deleteSpan).style.display = "";
+        document.getElementById(confirmSpan).style.display = "none";
+    }
+
+}

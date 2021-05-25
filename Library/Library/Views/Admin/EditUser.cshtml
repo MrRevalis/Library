@@ -3,39 +3,63 @@
 @{
     ViewBag.Title = "Edit User";
 }
-
-<article style="width: 100%;">
-    <h2>Edit User: @Model.UserName</h2>
-    @using (Html.BeginForm("EditUser", "Admin", FormMethod.Post, new { @class = "formLeft" }))
-    {
-        <div class="formGroup">
-            @Html.LabelFor(x => x.ID)
-            <div class="formRows">
-                @Html.EditorFor(x => x.ID, new { htmlAttributes = new { @readonly = "readonly", @class = "inputDisabled" } })
-                @Html.ValidationMessageFor(x => x.ID, "")
+<section>
+    <article>
+        <h2>Edit User: @Model.UserName</h2>
+        @using (Html.BeginForm("EditUser", "Admin", FormMethod.Post, new { @class = "formLeft" }))
+        {
+            <div class="formGroup">
+                @Html.LabelFor(x => x.ID)
+                <div class="formRows">
+                    @Html.EditorFor(x => x.ID, new { htmlAttributes = new { @readonly = "readonly", @class = "inputDisabled" } })
+                    @Html.ValidationMessageFor(x => x.ID, "")
+                </div>
             </div>
-        </div>
 
-        <div class="formGroup">
-            @Html.LabelFor(x => x.UserName)
-            <div class="formRows">
-                @Html.EditorFor(x => x.UserName)
-                @Html.ValidationMessageFor(x => x.UserName, "")
+            <div class="formGroup">
+                @Html.LabelFor(x => x.UserName)
+                <div class="formRows">
+                    @Html.EditorFor(x => x.UserName)
+                    @Html.ValidationMessageFor(x => x.UserName, "")
+                </div>
             </div>
-        </div>
 
-        <div class="formGroup">
-            @Html.LabelFor(x => x.Email)
-            <div class="formRows">
-                @Html.EditorFor(x => x.Email)
-                @Html.ValidationMessageFor(x => x.Email, "")
+            <div class="formGroup">
+                @Html.LabelFor(x => x.Email)
+                <div class="formRows">
+                    @Html.EditorFor(x => x.Email)
+                    @Html.ValidationMessageFor(x => x.Email, "")
+                </div>
             </div>
-        </div>
 
-        @Html.ValidationSummary(true)
-        <div class="submitSectionBlueRow">
-            <input class="button" type="submit" value="Update" />
-            <input class="button" type="button" value="Cancel" onclick="location.href='@Url.Action("Cancel", "Admin")'" />
+            @Html.ValidationSummary(true)
+            <input class="button inline" type="submit" value="Update" />
+            <input class="button inline" type="button" value="Cancel" onclick="location.href='@Url.Action("Cancel", "Admin")'" />
+        }
+
+    <div class="card">
+        <div class="cardHeader">
+            Roles
         </div>
-    }
-</article>
+        <div class="cardBody">
+            @if (Model.Roles.Any())
+            {
+                <ul class="userList">
+                    @foreach (var role in Model.Roles)
+                    {
+                        <li>@role</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <span>None at the moment</span>
+            }
+            
+        </div>
+        <div class="cardSetting">
+            @Html.ActionLink("Manage roles", "ManageRole", "Roles", new { roleID = Model.ID }, new { @class = "button inCard" })
+        </div>
+    </div>
+    </article>
+</section>

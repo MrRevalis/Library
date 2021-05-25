@@ -13,6 +13,7 @@ using System.Web.Mvc;
 
 namespace Library.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private AppUserManager UserManager;
@@ -51,6 +52,7 @@ namespace Library.Controllers
             return View(accountView);
         }
 
+        [HttpPost]
         public async Task<ActionResult> DeleteUser(string ID)
         {
             AppUser user = await UserManager.FindByIdAsync(ID);

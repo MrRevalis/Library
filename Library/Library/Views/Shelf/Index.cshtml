@@ -5,26 +5,28 @@
     int i = 1;
 }
 @Html.Action("Menu", "Nav", new { genre = "bookShelf" })
-<article>
-    <h3>Bookshelf (@Model.Count() number of books)</h3>
-    <table class="customTable shelfTable">
-        <tr>
-            <th>LP.</th>
-            <th>@Html.DisplayNameFor(x => x.First().Book.ImageData)</th>
-            <th>@Html.DisplayNameFor(x => x.First().Book.Title)</th>
-        </tr>
-
-        @foreach (Shelf x in Model)
-        {
-            <tr onclick="location.href = '@Url.Action("Description", "Book", new { ID = x.BookID } )'" class="shelfRow">
-                <td>@i</td>
-                <td>
-                    <img width="150" height="200" src="@Url.Action("GetImage", "Book", new { ID = x.BookID})" />
-                </td>
-                <td>@x.Book.Title</td>
-                <td>@Html.ActionLink(" ", "Delete", new { shelfID = x.ShelfID }, new { @class = "deleteIcon" })</td>
+<section>
+    <article>
+        <h3>Bookshelf (@Model.Count() number of books)</h3>
+        <table class="customTable shelfTable">
+            <tr>
+                <th>LP.</th>
+                <th>@Html.DisplayNameFor(x => x.First().Book.ImageData)</th>
+                <th>@Html.DisplayNameFor(x => x.First().Book.Title)</th>
             </tr>
-            i++;
-        }
-    </table>
-</article>
+
+            @foreach (Shelf x in Model)
+            {
+                <tr onclick="location.href = '@Url.Action("Description", "Book", new { ID = x.BookID } )'" class="shelfRow">
+                    <td>@i</td>
+                    <td>
+                        <img width="150" height="200" src="@Url.Action("GetImage", "Book", new { ID = x.BookID})" />
+                    </td>
+                    <td>@x.Book.Title</td>
+                    <td>@Html.ActionLink(" ", "Delete", new { shelfID = x.ShelfID }, new { @class = "deleteIcon" })</td>
+                </tr>
+                i++;
+            }
+        </table>
+    </article>
+</section>

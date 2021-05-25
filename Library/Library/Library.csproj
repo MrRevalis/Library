@@ -288,7 +288,9 @@
     <Content Include="Content\style.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\cancel.png" />
     <Content Include="Images\chevron_right.svg" />
+    <Content Include="Images\confirm.png" />
     <Content Include="Images\defaultCover.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
